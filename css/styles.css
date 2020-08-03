@@ -5,7 +5,9 @@
 .jumbotron .display-4{
     font-weight: bold;
 }
-
+#login-fieldset {
+  display: table-row;
+}
 .jumbotron {
   height: 50vh;
   padding: 5em inherit;
@@ -117,6 +119,16 @@ footer p {
   100% {
     transform: rotate(360deg);
   }
+}
+#login-form {
+display: grid;
+width: fit-content;
+margin: auto;
+ 
+}
+
+input {
+margin-bottom: 2%;
 }
 
 #spinner-wrapper{
