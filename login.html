@@ -43,11 +43,11 @@
       <h4 class="alert-heading">Bienvenido a eMercado</h4>
       <p>Ingrese su usuario y su contraseña</p>
       <hr>
-      <form id="login-form" action="index.html">
+      <form id="login-form" method="POST" action="index.html">
         <label for="usuario">Usuario</label>
-        <input type="email" id="usuario" placeholder="Ingrese su email..." required>
+        <input type="email" name="usuario" id="usuario" placeholder="Ingrese su email..." required>
         <label for="contraseña">Contraseña</label>
-        <input type="password" id="contraseña" placeholder="Ingrese su contraseña..."  required>
+        <input type="password" name="contraseña" id="contraseña" placeholder="Ingrese su contraseña..."  required>
         <input type="submit">
       </form>
     </div>
