@@ -40,11 +40,12 @@ var getJSONData = function(url){
     });
 }
 //Funcion para ser enviado al login la primera vez que se ingresa al Home
-var userLogged = sessionStorage.getItem("visitado");
-if (userLogged != 1){
-window.location.href = "login.html";
-sessionStorage.setItem("visitado", "1");
-}
+if (!sessionStorage.getItem('logueado') &&
+  !window.location.href.endsWith('login.html')){
+  window.location.href = 'login.html';
+};
+
+
 //Función que se ejecuta una vez que se haya lanzado el evento de
 //que el documento se encuentra cargado, es decir, se encuentran todos los
 //elementos HTML presentes.
