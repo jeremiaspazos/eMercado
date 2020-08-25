@@ -1,8 +1,20 @@
 function enviarDatos(evento) {
-    evento.preventDefault(); //Evita que se haga la peticion de envio de datos
+    //Evito que se repita el Bucle
+    evento.preventDefault(); 
     sessionStorage.setItem('logueado', 'true');
     window.location.href = 'index.html';
+    
+    //Albergo los datos del usuario
+    let usuarioLog = {
+        nombre: document.getElementById("usuario").value,
+        password: document.getElementById("contraseña").value
+    }; 
+    let usuarioString = JSON.stringify(usuarioLog);
+    localStorage.setItem("usuarioAndPass", usuarioString);
+    
+    
     return true;
+
 }
 document.getElementById('login-form').addEventListener('submit', enviarDatos);
 
