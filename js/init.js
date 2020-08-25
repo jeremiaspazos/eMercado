@@ -45,7 +45,7 @@ if (!sessionStorage.getItem('logueado') &&
   window.location.href = 'login.html';
 };
 
-
+//funcion para incrustar nombre de usuario en NavBar
 function escribirUsuario(){
   var usuario2 = JSON.parse(localStorage.getItem("usuarioAndPass"));
   document.getElementById("profileLink").innerHTML=usuario2.nombre;
