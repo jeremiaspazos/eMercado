@@ -21,13 +21,24 @@
         <a class="py-2 d-none d-md-inline-block" href="products.html">Productos</a>
         <a class="py-2 d-none d-md-inline-block" href="sell.html">Vender</a>
         <a class="py-2 d-none d-md-inline-block" href="cart.html">Mi carrito</a>
-        <a id="profileLink" class="py-2 d-none d-md-inline-block" href="my-profile.html"></a>
       </div>
     </nav>
     <div class="text-center p-4">
       <h2>Productos</h2>
       <p class="lead">Verás aquí todos los productos de esta categoria.</p>
   </div>
+  <div class="container">
+    <div class="row">
+        <div class="col text-right">
+            <div class="btn-group btn-group-toggle mb-4" data-toggle="buttons">
+                <label class="btn btn-light active" id="sortAsc" >
+                    <input type="radio" name="options" autocomplete="off" onclick=ordenarAsc() checked>A-Z
+                </label>
+                <label class="btn btn-light" id="sortDesc" >
+                    <input type="radio" name="options" autocomplete="off">Z-A
+                </label>
+            </div>
+          </div>
   <!--Se le agrego un ID "container products para introducir los datos del json-->
     <div class="container p-5" id="container-products">
     </div>
