@@ -31,14 +31,19 @@
     <div class="row">
         <div class="col text-right">
             <div class="btn-group btn-group-toggle mb-4" data-toggle="buttons">
-                <label class="btn btn-light active" id="sortAsc" >
-                    <input type="radio" name="options" autocomplete="off" onclick=ordenarAsc() checked>A-Z
+                <label class="btn btn-light" id="sortAsc" >
+                    <input type="radio" name="options" autocomplete="off" checked>Mayor precio
                 </label>
                 <label class="btn btn-light" id="sortDesc" >
-                    <input type="radio" name="options" autocomplete="off">Z-A
+                    <input type="radio" name="options" autocomplete="off">Menor precio
                 </label>
+                <label class="btn btn-light" id="sortRel" >
+                  <input type="radio" name="options" autocomplete="off" checked>Mas vendidos
+              </label>
             </div>
           </div>
+    </div> 
+  </div>   
   <!--Se le agrego un ID "container products para introducir los datos del json-->
     <div class="container p-5" id="container-products">
     </div>

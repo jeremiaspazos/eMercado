@@ -30,6 +30,36 @@ function showProductsList(array){
     }
 }
 
+function ordenPrecioAscendente (array){
+let products = []
+products = array.sort(function(a, b){
+    if ( a.cost > b.cost ){ return -1; }
+    if ( a.cost < b.cost ){ return 1; }
+    return 0;
+})
+showProductsList(array)
+}
+
+function ordenPrecioDescendente (array){
+    let products = []
+    products = array.sort(function(a, b){
+        if ( a.cost < b.cost ){ return -1; }
+        if ( a.cost > b.cost ){ return 1; }
+        return 0;
+    })
+    showProductsList(array)    
+}
+
+function ordenRelevancia (array){
+    let products = []
+    products = array.sort(function(a,b){
+        if(a.soldCount < b.soldCount) {return -1;}
+        if(a.soldCount > b.soldCount) {return 1;}
+        return 0;
+    })
+    showProductsList(array)
+}
+    
 
 //Función que se ejecuta una vez que se haya lanzado el evento de
 //que el documento se encuentra cargado, es decir, se encuentran todos los
@@ -43,4 +73,13 @@ document.addEventListener("DOMContentLoaded", function(e){
             showProductsList(productsArray);
         }
     });
+});
+document.getElementById("sortAsc").addEventListener("click", function(){
+    ordenPrecioAscendente(productsArray);
+});
+document.getElementById("sortDesc").addEventListener("click", function(){
+    ordenPrecioDescendente(productsArray);
+});
+document.getElementById("sortRel").addEventListener("click", function(){
+    ordenRelevancia(productsArray);
 });
