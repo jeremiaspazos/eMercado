@@ -20,47 +20,60 @@ function showProductsList(array){
                         <small class="text-muted">` + products.cost + `USD </small>
                     </div>
                     <div>` + products.description + `</div>
+                    <br>
+                    <br>
+                    <br>
+                    <div>Se han vendido ` + products.soldCount + ` hasta el momento </div>
 
                 </div>
             </div>
         </div>
         `
 
-        document.getElementById("container-products").innerHTML = htmlContentToAppend;//nombre de ID debe corregirse.
+        document.getElementById("container-products").innerHTML = htmlContentToAppend;
     }
 }
+//Funciones para botones de orden y filtro
 
 function ordenPrecioAscendente (array){
-let products = []
-products = array.sort(function(a, b){
-    if ( a.cost > b.cost ){ return -1; }
-    if ( a.cost < b.cost ){ return 1; }
-    return 0;
+            array.sort(function(a, b){
+            if ( a.cost > b.cost ){ return -1; }
+            if ( a.cost < b.cost ){ return 1; }
+        return 0;
 })
-showProductsList(array)
+    showProductsList(array)
 }
 
 function ordenPrecioDescendente (array){
-    let products = []
-    products = array.sort(function(a, b){
+        array.sort(function(a, b){
         if ( a.cost < b.cost ){ return -1; }
         if ( a.cost > b.cost ){ return 1; }
         return 0;
     })
-    showProductsList(array)    
+    console.log(array)
+    showProductsList(array) 
 }
 
 function ordenRelevancia (array){
-    let products = []
-    products = array.sort(function(a,b){
-        if(a.soldCount < b.soldCount) {return -1;}
-        if(a.soldCount > b.soldCount) {return 1;}
+        array.sort(function(a,b){
+        if(a.soldCount > b.soldCount) {return -1;}
+        if(a.soldCount < b.soldCount) {return 1;}
         return 0;
     })
     showProductsList(array)
 }
-    
 
+function filtroPrecio(array){
+    let arrayAux = []
+    let min = document.getElementById("precioMin").value
+    let max = document.getElementById("precioMax").value
+    for(i=0; i < array.length; i++){
+        if(array[i].cost >= min && array[i].cost <= max){
+        arrayAux.push(array[i])
+        }
+    }
+    showProductsList(arrayAux)
+}
 //Función que se ejecuta una vez que se haya lanzado el evento de
 //que el documento se encuentra cargado, es decir, se encuentran todos los
 //elementos HTML presentes.
@@ -69,11 +82,14 @@ document.addEventListener("DOMContentLoaded", function(e){
         if (resultObj.status === "ok")
         {
             productsArray = resultObj.data;
-            //Muestro las categorías ordenadas
+            //Muestro la lista de productos
             showProductsList(productsArray);
         }
     });
 });
+
+
+//AddeventListener de los botones para ordenar. Actucan al Click con el boton en el html
 document.getElementById("sortAsc").addEventListener("click", function(){
     ordenPrecioAscendente(productsArray);
 });
@@ -82,4 +98,7 @@ document.getElementById("sortDesc").addEventListener("click", function(){
 });
 document.getElementById("sortRel").addEventListener("click", function(){
     ordenRelevancia(productsArray);
+});
+document.getElementById("filtrando").addEventListener("click", function(){
+    filtroPrecio(productsArray);
 });
