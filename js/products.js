@@ -74,6 +74,21 @@ function filtroPrecio(array){
     }
     showProductsList(arrayAux)
 }
+
+//TENGO QUE SEGUIR LABURANDO ACA
+
+/*function filtroPorTecleo(array){
+    let arrayAux = []
+    let buscador = document.getElementById("buscando").value
+    for(i=0; i < array.length; i++){
+        if(array[i].name.includes(buscador))
+    arrayAux.push(array[i])
+    }
+    showProductsList(arrayAux)
+}*/
+
+
+
 //Función que se ejecuta una vez que se haya lanzado el evento de
 //que el documento se encuentra cargado, es decir, se encuentran todos los
 //elementos HTML presentes.
@@ -102,3 +117,9 @@ document.getElementById("sortRel").addEventListener("click", function(){
 document.getElementById("filtrando").addEventListener("click", function(){
     filtroPrecio(productsArray);
 });
+
+
+//TENGO QUE SEGUIR LABURANDO ACA
+/* document.getElementById("buscando").addEventListener("keydown", function(){
+    filtroPorTecleo(productsArray)
+}); */
