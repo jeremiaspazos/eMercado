@@ -50,7 +50,6 @@ function ordenPrecioDescendente (array){
         if ( a.cost > b.cost ){ return 1; }
         return 0;
     })
-    console.log(array)
     showProductsList(array) 
 }
 
