@@ -40,7 +40,7 @@ function ordenPrecioAscendente (array){
             if ( a.cost > b.cost ){ return -1; }
             if ( a.cost < b.cost ){ return 1; }
         return 0;
-})
+    })
     showProductsList(array)
 }
 
@@ -63,16 +63,38 @@ function ordenRelevancia (array){
 }
 
 function filtroPrecio(array){
-    let arrayAux = []
+    let arrayAux = [];
     let min = document.getElementById("precioMin").value
     let max = document.getElementById("precioMax").value
     for(i=0; i < array.length; i++){
         if(array[i].cost >= min && array[i].cost <= max){
-        arrayAux.push(array[i])
-        }
-    }
+        arrayAux.push(array[i]);
+     }
     showProductsList(arrayAux)
 }
+}
+function limpiarFiltro(array){
+    let min = document.getElementById("precioMin").value
+    let max = document.getElementById("precioMax").value
+    max = ""
+    min = "" 
+    showProductsList(array)
+}
+
+//Tengo que continuar trabajando en esta Funcionalidad.
+
+/*function filtroPorTecleo(array){
+    let arrayAux = []
+    let buscador = document.getElementById("buscando").value
+    for(i=0; i < array.length; i++){
+        if(array[i].name.includes(buscador))
+    arrayAux.push(array[i])
+    }
+    showProductsList(arrayAux)
+}*/
+
+
+
 //Función que se ejecuta una vez que se haya lanzado el evento de
 //que el documento se encuentra cargado, es decir, se encuentran todos los
 //elementos HTML presentes.
@@ -101,3 +123,11 @@ document.getElementById("sortRel").addEventListener("click", function(){
 document.getElementById("filtrando").addEventListener("click", function(){
     filtroPrecio(productsArray);
 });
+document.getElementById("limpiaFiltro").addEventListener("click", function(){
+    limpiarFiltro(productsArray);
+});
+
+//Tengo que seguir trabajando en esta Funcionalidad.
+/* document.getElementById("buscando").addEventListener("keydown", function(){
+    filtroPorTecleo(productsArray)
+}); */
