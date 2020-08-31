@@ -1,35 +1,21 @@
-var infoArray = []
+function showImagesGallery(array){
 
-function showInfo(infoArray){
     let htmlContentToAppend = "";
-    let info = infoArray
+
+    for(let i = 0; i < array.length; i++){
+        let imageSrc = array[i];
 
         htmlContentToAppend += `
-        <div class="list-group-item list-group-item-action">
-            <div class="row">
-                <div class= "col-3">
-                    <img src="` + info.images[1] + `"class="img-thumbnail">
-                </div>
-                <div class="col">
-                    <div class="d-flex w-100 justify-content-between">
-                        
-                        <h4 class="mb-1">`+ info.name +`</h4>
-                        <small class="text-muted">` + info.cost + `USD </small>
-                    </div>
-                    <div>` + info.description + `</div>
-                    <br>
-                    <br>
-                    <br>
-                    <div>Se han vendido ` + info.soldCount + ` hasta el momento </div>
-
-                </div>
+        <div class="col-lg-3 col-md-4 col-6">
+            <div class="d-block mb-4 h-100">
+                <img class="img-fluid img-thumbnail" src="` + imageSrc + `" alt="">
             </div>
         </div>
         `
 
-        document.getElementById("containerInfo").innerHTML = htmlContentToAppend;
+        document.getElementById("productImagesGallery").innerHTML = htmlContentToAppend;
     }
-
+}
 
 
 //Función que se ejecuta una vez que se haya lanzado el evento de
@@ -40,8 +26,17 @@ document.addEventListener("DOMContentLoaded", function(e){
         if (resultObj.status === "ok")
         {
             infoArray = resultObj.data;
-            //Muestro la lista de productos
-            showInfo(infoArray);
+            
+            let productName = document.getElementById("productName");
+            let productDescription = document.getElementById("productDescription");
+            let productCount = document.getElementById("productCount");
+            
+            productName.innerHTML = infoArray.name;
+            productDescription.innerHTML = infoArray.description;
+            productCount.innerHTML = infoArray.soldCount;
+
+            showImagesGallery(infoArray.images);
+
         }
     });
 });

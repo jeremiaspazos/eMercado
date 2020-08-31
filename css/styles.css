@@ -9,6 +9,9 @@
 #login-fieldset {
   display: table-row;
 }
+#productName{
+padding: 10px;
+}
 .jumbotron {
   height: 50vh;
   padding: 5em inherit;
