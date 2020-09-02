@@ -32,8 +32,9 @@ function showProductsList(array){
         </a>
         `
 
-        document.getElementById("container-products").innerHTML = htmlContentToAppend;
+        
     }
+document.getElementById("container-products").innerHTML = htmlContentToAppend;
 }
 //Funciones para botones de orden y filtro
 
@@ -66,8 +67,8 @@ function ordenRelevancia (array){
 
 function filtroPrecio(array){
     let arrayAux = [];
-    let min = document.getElementById("precioMin").value
-    let max = document.getElementById("precioMax").value
+    let min = document.getElementById("priceMin").value
+    let max = document.getElementById("priceMax").value
     for(i=0; i < array.length; i++){
         if(array[i].cost >= min && array[i].cost <= max){
         arrayAux.push(array[i]);
@@ -76,8 +77,8 @@ function filtroPrecio(array){
 }
 }
 function limpiarFiltro(array){
-    let min = document.getElementById("precioMin").value
-    let max = document.getElementById("precioMax").value
+    let min = document.getElementById("priceMin").value
+    let max = document.getElementById("priceMax").value
     max = ""
     min = "" 
     showProductsList(array)
@@ -85,15 +86,15 @@ function limpiarFiltro(array){
 
 //Tengo que continuar trabajando en esta Funcionalidad.
 
-/*function filtroPorTecleo(array){
+function filtroPorTecleo(array){
     let arrayAux = []
-    let buscador = document.getElementById("buscando").value
+    let buscador = document.getElementById("browser").value.toUpperCase()
     for(i=0; i < array.length; i++){
-        if(array[i].name.includes(buscador))
+        if(array[i].name.toUpperCase().includes(buscador))
     arrayAux.push(array[i])
     }
     showProductsList(arrayAux)
-}*/
+}
 
 
 
@@ -122,14 +123,13 @@ document.getElementById("sortDesc").addEventListener("click", function(){
 document.getElementById("sortRel").addEventListener("click", function(){
     ordenRelevancia(productsArray);
 });
-document.getElementById("filtrando").addEventListener("click", function(){
+document.getElementById("filter").addEventListener("click", function(){
     filtroPrecio(productsArray);
 });
-document.getElementById("limpiaFiltro").addEventListener("click", function(){
+document.getElementById("cleanFilter").addEventListener("click", function(){
     limpiarFiltro(productsArray);
 });
 
-//Tengo que seguir trabajando en esta Funcionalidad.
-/* document.getElementById("buscando").addEventListener("keydown", function(){
+document.getElementById("browser").addEventListener("keyup", function(){
     filtroPorTecleo(productsArray)
-}); */
+});
