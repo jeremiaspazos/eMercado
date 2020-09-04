@@ -12,6 +12,11 @@
 #productName{
 padding: 10px;
 }
+#coments {
+  width: 75%;
+  margin:auto
+}
+
 .jumbotron {
   height: 50vh;
   padding: 5em inherit;
