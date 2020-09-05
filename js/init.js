@@ -39,7 +39,11 @@ var getJSONData = function(url){
         return result;
     });
 }
-
+//Funcion para ser enviado al login la primera vez que se ingresa al Home
+if (!sessionStorage.getItem('logueado') &&
+  !window.location.href.endsWith('login.html')){
+  window.location.href = 'login.html';
+};
 
 //funcion para incrustar nombre de usuario en NavBar
 function escribirUsuario(){

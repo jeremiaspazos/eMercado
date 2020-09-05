@@ -159,3 +159,6 @@ a.custom-card:hover {
 .checked {
   color: orange;
 }
+#main {
+  background-color: grey;
+}
