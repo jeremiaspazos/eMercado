@@ -47,13 +47,13 @@ if (!sessionStorage.getItem('logueado') &&
 
 //funcion para incrustar nombre de usuario en NavBar
 function escribirUsuario(){
-  var usuario2 = JSON.parse(localStorage.getItem("usuarioAndPass"));
+  var usuario2 = JSON.parse(localStorage.getItem("usuario"));
   
   var usuarioNav = document.createElement("a")
-  usuarioNav.setAttribute("id", "nombreUsuario")
+  usuarioNav.setAttribute("id", "usuario")
   usuarioNav.setAttribute("class","py-2 d-none d-md-inline-block");
   usuarioNav.setAttribute("href", "my-profile.html");
-  usuarioNav.appendChild(document.createTextNode(usuario2.nombre));
+  usuarioNav.appendChild(document.createTextNode(usuario2));
   document.querySelectorAll('nav.site-header div')[0].appendChild(usuarioNav)
   }
   escribirUsuario();

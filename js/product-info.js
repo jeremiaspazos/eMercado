@@ -19,22 +19,71 @@ function showImagesGallery(array){
 
 
 function showComments(array){
+    let containerPre = document.getElementById("comment-container");
 
     let htmlContentToAppend = "";
 
     for(let i = 0; i < array.length; i++){
     
     let comment = array[i]
+  
 
-    htmlContentToAppend += `<div id="coments" class="card text-left">
-    <h3>`+ comment.user + `</h3>
-    <p class ="font-italic">`+comment.description +`</p>
-    <p>`+comment.score +`</p>
-    <small>`+comment.dateTime +`</small>
+    htmlContentToAppend +=  `
+	<div class="card text-left">
+		<div class="">
+		  <span>Valoración: `+comment.score+`</span>
+		</div>
+		<div class="valoracion text-justify">
+		  <p class="descripcion_valoracion">`+comment.description+`</p>
+		  <p class="usuario-valoracion">Usuario: `+comment.user+`</p>
+		  <small>Fecha de publicación: `+comment.dateTime+`</small>
+		</div>
+	</div>
+    `
+}
+containerPre.innerHTML += htmlContentToAppend
+}
     
-  </div>`
-    }
-    document.getElementById("comment-container").innerHTML = htmlContentToAppend
+    
+
+function agregarComentario(event){
+	event.preventDefault();
+	let valoracion = document.getElementById("valoracion").value;
+	let comentario = document.getElementById("comentario").value;
+	let container = document.getElementById("comment-usuario");
+    let nombreUsuario = JSON.parse(localStorage.getItem('usuario'));
+    console.log(nombreUsuario)
+	let today = new Date();
+	let fechaActual = today.getFullYear()+'-'+(today.getMonth()+1)+'-'+today.getDate();
+	let horaActual = today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
+	htmlContentToAppend = `
+	<div class="card text-left">
+		<div class="">
+		  <span>Valoración: `+valoracion+`</span>
+		  <span class="fa fa-star"></span>
+		  <span class="fa fa-star"></span>
+		  <span class="fa fa-star"></span>
+		  <span class="fa fa-star"></span>
+		  <span class="fa fa-star"></span>   
+		</div>
+		<div class="valoracion text-justify">
+		  <p class="descripcion_valoracion">`+comentario+`</p>
+		  <p class="usuario-valoracion">Usuario: `+nombreUsuario+`</p>
+		  <small>Fecha de publicación: `+fechaActual+` `+horaActual+`</small>
+		</div>
+	</div>
+	`
+	var elementoComentario = document.createElement('div');
+	elementoComentario.innerHTML += htmlContentToAppend;
+
+	var estrellas = elementoComentario.getElementsByClassName('fa-star');
+	console.log(estrellas);
+
+	for (var i = 0; i < valoracion; i++) {
+		estrellas[i].classList.add('checked');
+	}
+
+	container.appendChild(elementoComentario);
 }
 
 //Función que se ejecuta una vez que se haya lanzado el evento de

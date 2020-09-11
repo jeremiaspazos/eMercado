@@ -23,11 +23,11 @@
       <a class="py-2 d-none d-md-inline-block" href="products.html">Productos</a>
       <a class="py-2 d-none d-md-inline-block" href="sell.html">Vender</a>
       <a class="py-2 d-none d-md-inline-block" href="cart.html">Mi carrito</a>
-      
+
     </div>
   </nav>
   <main role="main">
-  <div class="container mt-5">
+    <div class="container mt-5">
       <h3 id="productName" class="text-center h1"></h3>
       <hr class="my-3">
       <dl>
@@ -49,11 +49,31 @@
       </dl>
       <a type="button" class="btn btn-light btn-lg btn-block" href="products.html">Ver productos</a>
     </div>
-    <h2 class="text-center">Comentarios</h2>
+    <div id="relatedProducts"></div>
+
+    <div>
+      <h2 class="text-center">Comentarios</h2>
+      <form class="form-group" id="form-user" onsubmit="agregarComentario(event)">
+        <p>Valoracion</p>
+        <select class="form-control" id="valoracion">
+          <option value="0">0</option>
+          <option value="1">1</option>
+          <option value="2">2</option>
+          <option value="3">3</option>
+          <option value="4">4</option>
+          <option value="5">5</option>
+        </select>
+        <label>Ingrese su comentario</label>
+        <textarea class="form-control" id="comentario"></textarea>
+        <button type="submit" class="form-control text-center">Publicar comentario</button>
+      </form>
+    </div>
     <div id="comment-container">
     </div>
-  </div>
-</div>
+    <div id="comment-usuario">
+    </div>
+    </div>
+    </div>
   </main>
   <footer class="text-muted bg-dark">
     <div class="container">

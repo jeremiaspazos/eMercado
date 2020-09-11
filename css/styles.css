@@ -162,3 +162,7 @@ a.custom-card:hover {
 #main {
   background-color: grey;
 }
+#form-user{
+  width: 50%;
+  margin: auto;
+}

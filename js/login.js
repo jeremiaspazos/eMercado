@@ -5,12 +5,9 @@ function enviarDatos(evento) {
     window.location.href = 'index.html';
     
     //Albergo los datos del usuario
-    let usuarioLog = {
-        nombre: document.getElementById("login").value,
-        password: document.getElementById("password").value
-    }; 
+    let usuarioLog = document.getElementById("login").value; 
     let usuarioString = JSON.stringify(usuarioLog);
-    localStorage.setItem("usuarioAndPass", usuarioString);
+    localStorage.setItem("usuario", usuarioString);
     
     
     return true;
