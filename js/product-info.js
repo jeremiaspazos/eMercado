@@ -1,11 +1,11 @@
-function showImagesGallery(array){
+function showImagesGallery(array) {
 
-    let htmlContentToAppend = "";
+	let htmlContentToAppend = "";
 
-    for(let i = 0; i < array.length; i++){
-        let imageSrc = array[i];
+	for (let i = 0; i < array.length; i++) {
+		let imageSrc = array[i];
 
-        htmlContentToAppend += `
+		htmlContentToAppend += `
         <div class="col-lg-3 col-md-4 col-6">
             <div class="d-block mb-4 h-100">
                 <img class="img-fluid img-thumbnail" src="` + imageSrc + `" alt="">
@@ -13,53 +13,53 @@ function showImagesGallery(array){
         </div>
         `
 
-        document.getElementById("productImagesGallery").innerHTML = htmlContentToAppend;
-    }
+		document.getElementById("productImagesGallery").innerHTML = htmlContentToAppend;
+	}
 }
 
 
-function showComments(array){
-    let containerPre = document.getElementById("comment-container");
+function showComments(array) {
+	let containerPre = document.getElementById("comment-container");
 
-    let htmlContentToAppend = "";
+	let htmlContentToAppend = "";
 
-    for(let i = 0; i < array.length; i++){
-    
-    let comment = array[i]
-  
+	for (let i = 0; i < array.length; i++) {
 
-    htmlContentToAppend +=  `
+		let comment = array[i]
+
+
+		htmlContentToAppend += `
 	<div class="card text-left">
 		<div class="">
-		  <span>Valoración: `+comment.score+`</span>
+		  <span>Valoración: `+ comment.score + `</span>
 		</div>
 		<div class="valoracion text-justify">
-		  <p class="descripcion_valoracion">`+comment.description+`</p>
-		  <p class="usuario-valoracion">Usuario: `+comment.user+`</p>
-		  <small>Fecha de publicación: `+comment.dateTime+`</small>
+		  <p class="descripcion_valoracion">`+ comment.description + `</p>
+		  <p class="usuario-valoracion">Usuario: `+ comment.user + `</p>
+		  <small>Fecha de publicación: `+ comment.dateTime + `</small>
 		</div>
 	</div>
     `
+	}
+	containerPre.innerHTML += htmlContentToAppend;
 }
-containerPre.innerHTML += htmlContentToAppend
-}
-    
-    
 
-function agregarComentario(event){
+
+
+function agregarComentario(event) {
 	event.preventDefault();
 	let valoracion = document.getElementById("valoracion").value;
 	let comentario = document.getElementById("comentario").value;
 	let container = document.getElementById("comment-usuario");
-    let nombreUsuario = JSON.parse(localStorage.getItem('usuario'));
-    console.log(nombreUsuario)
+	let nombreUsuario = JSON.parse(localStorage.getItem('usuario'));
+	console.log(nombreUsuario)
 	let today = new Date();
-	let fechaActual = today.getFullYear()+'-'+(today.getMonth()+1)+'-'+today.getDate();
+	let fechaActual = today.getFullYear() + '-' + (today.getMonth() + 1) + '-' + today.getDate();
 	let horaActual = today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
 	htmlContentToAppend = `
 	<div class="card text-left">
 		<div class="">
-		  <span>Valoración: `+valoracion+`</span>
+		  <span>Valoración: `+ valoracion + `</span>
 		  <span class="fa fa-star"></span>
 		  <span class="fa fa-star"></span>
 		  <span class="fa fa-star"></span>
@@ -67,9 +67,9 @@ function agregarComentario(event){
 		  <span class="fa fa-star"></span>   
 		</div>
 		<div class="valoracion text-justify">
-		  <p class="descripcion_valoracion">`+comentario+`</p>
-		  <p class="usuario-valoracion">Usuario: `+nombreUsuario+`</p>
-		  <small>Fecha de publicación: `+fechaActual+` `+horaActual+`</small>
+		  <p class="descripcion_valoracion">`+ comentario + `</p>
+		  <p class="usuario-valoracion">Usuario: `+ nombreUsuario + `</p>
+		  <small>Fecha de publicación: `+ fechaActual + ` ` + horaActual + `</small>
 		</div>
 	</div>
 	`
@@ -89,33 +89,38 @@ function agregarComentario(event){
 //Función que se ejecuta una vez que se haya lanzado el evento de
 //que el documento se encuentra cargado, es decir, se encuentran todos los
 //elementos HTML presentes.
-document.addEventListener("DOMContentLoaded", function(e){
-    getJSONData(PRODUCT_INFO_URL).then(function(resultObj){
-        if (resultObj.status === "ok")
-        {
-            infoArray = resultObj.data;
-            
-            let productName = document.getElementById("productName");
-            let productDescription = document.getElementById("productDescription");
-            let productCount = document.getElementById("productCount");
-            
-            productName.innerHTML = infoArray.name;
-            productDescription.innerHTML = infoArray.description;
-            productCount.innerHTML = infoArray.soldCount;
+document.addEventListener("DOMContentLoaded", function (e) {
+	getJSONData(PRODUCT_INFO_URL).then(function (resultObj) {
+		if (resultObj.status === "ok") {
+			infoArray = resultObj.data;
 
-            showImagesGallery(infoArray.images);
+			let productName = document.getElementById("productName");
+			let productDescription = document.getElementById("productDescription");
+			let productCount = document.getElementById("productCount");
+			let nombre = window.location.search;
+			let nombreCorto = nombre.split("%20");
+			let name1 = nombreCorto[0].split("?");
+			let name2 = nombreCorto[1];
 
-        }
-    });
+
+
+			productName.innerHTML = name1[1] + " " + name2;
+			productDescription.innerHTML = infoArray.description;
+			productCount.innerHTML = infoArray.soldCount;
+
+			showImagesGallery(infoArray.images);
+
+		}
+	});
 });
 
-document.addEventListener("DOMContentLoaded", function(e){
-    getJSONData(PRODUCT_INFO_COMMENTS_URL).then(function(resultObj){
-        if (resultObj.status === "ok"){
-            commentsArray = resultObj.data;
+document.addEventListener("DOMContentLoaded", function (e) {
+	getJSONData(PRODUCT_INFO_COMMENTS_URL).then(function (resultObj) {
+		if (resultObj.status === "ok") {
+			commentsArray = resultObj.data;
 
 
-        showComments(commentsArray);
-        }
-    })
+			showComments(commentsArray);
+		}
+	})
 })
