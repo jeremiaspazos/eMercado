@@ -169,3 +169,6 @@ a.custom-card:hover {
 .border {
   border-color: black
 }
+.btn-secondary {
+  background-color: cornflowerblue;
+}

@@ -46,17 +46,25 @@ if (!sessionStorage.getItem('logueado') &&
 };
 
 //funcion para incrustar nombre de usuario en NavBar
-function escribirUsuario(){
-  var usuario2 = JSON.parse(localStorage.getItem("usuario"));
+  var usuario = JSON.parse(localStorage.getItem("usuario"))
+  var div1 = document.createElement("div");
+  div1.setAttribute("class","dropdown");
+  var htmlcontent= `
+  <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              `+usuario+`
+            </button>
+            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+              <a class="dropdown-item" href="my-profile.html">Mi perfil</a>
+              <a class="dropdown-item" href="cart.html">Carrito de compras</a>
+              <a class="dropdown-item" href="login.html" onclick=borrardatos() >Cerrar sesión</a>
+            </div>
+  `
+  div1.innerHTML= htmlcontent;
+  document.querySelectorAll('nav.site-header div')[0].appendChild(div1);
+
+
+
   
-  var usuarioNav = document.createElement("a")
-  usuarioNav.setAttribute("id", "usuario")
-  usuarioNav.setAttribute("class","py-2 d-none d-md-inline-block");
-  usuarioNav.setAttribute("href", "my-profile.html");
-  usuarioNav.appendChild(document.createTextNode(usuario2));
-  document.querySelectorAll('nav.site-header div')[0].appendChild(usuarioNav)
-  }
-  escribirUsuario();
 
 
 //Función que se ejecuta una vez que se haya lanzado el evento de

@@ -31,16 +31,16 @@ function showComments(array) {
 		htmlContentToAppend += `
 	<div class="container text-left border">
 	<div class="">
-		Valoracion:` 
-		for (let x=0; x <5; x++){
-			if(x>=comment.score){
-				htmlContentToAppend+=`<p class="fa fa-star">`
+		Valoracion:`
+		for (let x = 0; x < 5; x++) {
+			if (x >= comment.score) {
+				htmlContentToAppend += `<p class="fa fa-star">`
 			}
-			else{
-				htmlContentToAppend+=`<p class="fa fa-star checked">`
+			else {
+				htmlContentToAppend += `<p class="fa fa-star checked">`
 			}
 		}
-		htmlContentToAppend+=`
+		htmlContentToAppend += `
 		
 		<div class="valoracion text-justify">
 		  <p class="descripcion_valoracion">`+ comment.description + `</p>
@@ -63,7 +63,6 @@ function agregarComentario(event) {
 	let comentario = document.getElementById("comentario").value;
 	let container = document.getElementById("comment-usuario");
 	let nombreUsuario = JSON.parse(localStorage.getItem('usuario'));
-	console.log(nombreUsuario)
 	let today = new Date();
 	let fechaActual = today.getFullYear() + '-' + (today.getMonth() + 1) + '-' + today.getDate();
 	let horaActual = today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
@@ -88,8 +87,7 @@ function agregarComentario(event) {
 	var elementoComentario = document.createElement('div');
 	elementoComentario.innerHTML += htmlContentToAppend;
 
-	var estrellas = elementoComentario.getElementsByClassName('fa-star');
-	console.log(estrellas);
+	var estrellas = elementoComentario.getElementsByClassName('fa-star');	
 
 	for (var i = 0; i < valoracion; i++) {
 		estrellas[i].classList.add('checked');
@@ -113,10 +111,7 @@ document.addEventListener("DOMContentLoaded", function (e) {
 			let nombre = window.location.search;
 			let nombreCorto = nombre.split("%20");
 			let name1 = nombreCorto[0].split("?");
-			
 			let name2 = name1[1] + " " + nombreCorto[1];
-
-
 
 			productName.innerHTML = name2;
 			productDescription.innerHTML = infoArray.description;
@@ -125,39 +120,37 @@ document.addEventListener("DOMContentLoaded", function (e) {
 			showImagesGallery(infoArray.images);
 
 		}
-	})
-	getJSONData(PRODUCTS_URL).then(function (resultObj) {
-		if (resultObj.status === "ok") {
-			product = resultObj.data;
-			let htmlContentToAppend = "";
-			for (i = 0; i < infoArray.relatedProducts.length; i++) {
-				let productos = product[infoArray.relatedProducts[i]];
-				let nombre2 = productos.name.split(" ")
-				
-				htmlContentToAppend += `<a href="product-info.html?`+productos.name+`"><div class="col-sm-4">
-			<div class="card" style="width: 18rem;">
-			<img class="card-img-top" src="` + productos.imgSrc + `" alt="Card image cap">
-			<div class="card-body">
-			  <h5 class="card-title">`+ productos.name + `</h5>
-			  <p class="card-text">`+ productos.description + `</p>
-			</div>
-		  </div>
-		  </div></a>`
-		  
-			};
-			document.getElementById("relatedpro").innerHTML += htmlContentToAppend;
-		}
-
-	})
-});
-
-document.addEventListener("DOMContentLoaded", function (e) {
-	getJSONData(PRODUCT_INFO_COMMENTS_URL).then(function (resultObj) {
-		if (resultObj.status === "ok") {
-			commentsArray = resultObj.data;
-
-
-			showComments(commentsArray);
-		}
-	})
+		getJSONData(PRODUCTS_URL).then(function (resultObj) {
+			if (resultObj.status === "ok") {
+				product = resultObj.data;
+				let htmlContentToAppend = "";
+				for (i = 0; i < infoArray.relatedProducts.length; i++) {
+					let productos = product[infoArray.relatedProducts[i]];
+					
+	
+					htmlContentToAppend +=
+						`<a href="product-info.html?` + productos.name + `"><div class="col-sm-4">
+				<div class="card-sm" style="width: 18rem;">
+				<img class="card-img-top" src="` + productos.imgSrc + `" alt="Card image cap">
+				<div class="card-body">
+				  <h5 class="card-title">`+ productos.name + `</h5>
+				  <p class="card-text">`+ productos.description + `</p>
+				</div>
+			  </div>
+			  </div></a>`
+	
+				};
+				document.getElementById("relatedpro").innerHTML += htmlContentToAppend;
+			}
+	
+		})
+		getJSONData(PRODUCT_INFO_COMMENTS_URL).then(function (resultObj) {
+			if (resultObj.status === "ok") {
+				commentsArray = resultObj.data;
+	
+	
+				showComments(commentsArray);
+			}
+		})
+	});
 });
