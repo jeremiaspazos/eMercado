@@ -29,16 +29,27 @@ function showComments(array) {
 
 
 		htmlContentToAppend += `
-	<div class="card text-left">
-		<div class="">
-		  <span>Valoración: `+ comment.score + `</span>
-		</div>
+	<div class="container text-left border">
+	<div class="">
+		Valoracion:` 
+		for (let x=0; x <5; x++){
+			if(x>=comment.score){
+				htmlContentToAppend+=`<p class="fa fa-star">`
+			}
+			else{
+				htmlContentToAppend+=`<p class="fa fa-star checked">`
+			}
+		}
+		htmlContentToAppend+=`
+		
 		<div class="valoracion text-justify">
 		  <p class="descripcion_valoracion">`+ comment.description + `</p>
 		  <p class="usuario-valoracion">Usuario: `+ comment.user + `</p>
 		  <small>Fecha de publicación: `+ comment.dateTime + `</small>
 		</div>
 	</div>
+	</div>
+	<br>
     `
 	}
 	containerPre.innerHTML += htmlContentToAppend;
@@ -57,9 +68,9 @@ function agregarComentario(event) {
 	let fechaActual = today.getFullYear() + '-' + (today.getMonth() + 1) + '-' + today.getDate();
 	let horaActual = today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
 	htmlContentToAppend = `
-	<div class="card text-left">
+	<div class="container text-left border">
 		<div class="">
-		  <span>Valoración: `+ valoracion + `</span>
+		  <span>Valoración:</span>
 		  <span class="fa fa-star"></span>
 		  <span class="fa fa-star"></span>
 		  <span class="fa fa-star"></span>
@@ -72,6 +83,7 @@ function agregarComentario(event) {
 		  <small>Fecha de publicación: `+ fechaActual + ` ` + horaActual + `</small>
 		</div>
 	</div>
+	<br>
 	`
 	var elementoComentario = document.createElement('div');
 	elementoComentario.innerHTML += htmlContentToAppend;
@@ -90,6 +102,7 @@ function agregarComentario(event) {
 //que el documento se encuentra cargado, es decir, se encuentran todos los
 //elementos HTML presentes.
 document.addEventListener("DOMContentLoaded", function (e) {
+
 	getJSONData(PRODUCT_INFO_URL).then(function (resultObj) {
 		if (resultObj.status === "ok") {
 			infoArray = resultObj.data;
@@ -100,18 +113,42 @@ document.addEventListener("DOMContentLoaded", function (e) {
 			let nombre = window.location.search;
 			let nombreCorto = nombre.split("%20");
 			let name1 = nombreCorto[0].split("?");
-			let name2 = nombreCorto[1];
+			
+			let name2 = name1[1] + " " + nombreCorto[1];
 
 
 
-			productName.innerHTML = name1[1] + " " + name2;
+			productName.innerHTML = name2;
 			productDescription.innerHTML = infoArray.description;
 			productCount.innerHTML = infoArray.soldCount;
 
 			showImagesGallery(infoArray.images);
 
 		}
-	});
+	})
+	getJSONData(PRODUCTS_URL).then(function (resultObj) {
+		if (resultObj.status === "ok") {
+			product = resultObj.data;
+			let htmlContentToAppend = "";
+			for (i = 0; i < infoArray.relatedProducts.length; i++) {
+				let productos = product[infoArray.relatedProducts[i]];
+				let nombre2 = productos.name.split(" ")
+				
+				htmlContentToAppend += `<a href="product-info.html?`+productos.name+`"><div class="col-sm-4">
+			<div class="card" style="width: 18rem;">
+			<img class="card-img-top" src="` + productos.imgSrc + `" alt="Card image cap">
+			<div class="card-body">
+			  <h5 class="card-title">`+ productos.name + `</h5>
+			  <p class="card-text">`+ productos.description + `</p>
+			</div>
+		  </div>
+		  </div></a>`
+		  
+			};
+			document.getElementById("relatedpro").innerHTML += htmlContentToAppend;
+		}
+
+	})
 });
 
 document.addEventListener("DOMContentLoaded", function (e) {
@@ -123,4 +160,4 @@ document.addEventListener("DOMContentLoaded", function (e) {
 			showComments(commentsArray);
 		}
 	})
-})
+});

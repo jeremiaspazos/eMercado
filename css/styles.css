@@ -166,3 +166,6 @@ a.custom-card:hover {
   width: 50%;
   margin: auto;
 }
+.border {
+  border-color: black
+}
