@@ -1,21 +1,53 @@
 function showImagesGallery(array) {
 
 	let htmlContentToAppend = "";
+	let indicator = "";
+	let imagenes = "";
+	let imgToAppend = "";
 
-	for (let i = 0; i < array.length; i++) {
-		let imageSrc = array[i];
-
-		htmlContentToAppend += `
-        <div class="col-lg-3 col-md-4 col-6">
-            <div class="d-block mb-4 h-100">
-                <img class="img-fluid img-thumbnail" src="` + imageSrc + `" alt="">
-            </div>
-        </div>
-        `
-
+		htmlContentToAppend += `<div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+		<ol id="indicadores" class="carousel-indicators">
+		
+		</ol>
+		<div id="contenedorImagen" class="carousel-inner">
+		
+		</div>
+		<a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+		  <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+		  <span class="sr-only">Previous</span>
+		</a>
+		<a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+		  <span class="carousel-control-next-icon" aria-hidden="true"></span>
+		  <span class="sr-only">Next</span>
+		</a>
+	  </div>`
 		document.getElementById("productImagesGallery").innerHTML = htmlContentToAppend;
-	}
-}
+
+	for(i = 0 ; i < array.length; i++){
+		if(i==0){
+			indicator =
+			`<li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>`
+		}else {
+			indicator += `<li data-target="#carouselExampleIndicators" data-slide-to="`+i+`"></li>`
+		};
+	};
+	for(i=0 ;i < array.length; i++){
+		imagenes = array[i];
+		console.log(imagenes)
+		if(i==0){ imgToAppend = `
+			<div class="carousel-item active">
+      <img src="`+imagenes+`" class="d-block w-100" alt="...">
+    </div> `
+		}else { imgToAppend +=
+			`<div class="carousel-item">
+			<img src="`+imagenes+`" class="d-block w-100" alt="...">
+		  </div> `
+		};
+	};
+	document.getElementById("indicadores").innerHTML = indicator;
+	document.getElementById("contenedorImagen").innerHTML = imgToAppend
+	
+	};
 
 
 function showComments(array) {
@@ -108,12 +140,12 @@ document.addEventListener("DOMContentLoaded", function (e) {
 			let productName = document.getElementById("productName");
 			let productDescription = document.getElementById("productDescription");
 			let productCount = document.getElementById("productCount");
-			let nombre = window.location.search;
-			let nombreCorto = nombre.split("%20");
-			let name1 = nombreCorto[0].split("?");
-			let name2 = name1[1] + " " + nombreCorto[1];
+			
+			let parameters = new URLSearchParams(location.search);
+			let name = parameters.get('producto');
+			
 
-			productName.innerHTML = name2;
+			productName.innerHTML = name;
 			productDescription.innerHTML = infoArray.description;
 			productCount.innerHTML = infoArray.soldCount;
 
@@ -129,7 +161,7 @@ document.addEventListener("DOMContentLoaded", function (e) {
 					
 	
 					htmlContentToAppend +=
-						`<a href="product-info.html?` + productos.name + `"><div class="col-sm-4">
+						`<a href="product-info.html?producto=` + productos.name + `"><div class="col-sm-4">
 				<div class="card-sm" style="width: 18rem;">
 				<img class="card-img-top" src="` + productos.imgSrc + `" alt="Card image cap">
 				<div class="card-body">

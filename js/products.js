@@ -6,9 +6,10 @@ function showProductsList(array) {
     let htmlContentToAppend = "";
     for (let i = 0; i < array.length; i++) {
         let products = array[i];
+        
 
         htmlContentToAppend += `
-        <a href="product-info.html?` + products.name + `" class="list-group-item list-group-item-action">
+        <a href="product-info.html?producto=` + products.name + `" class="list-group-item list-group-item-action">
         <div class="list-group-item list-group-item-action">
             <div class="row">
                 <div class="col-3">

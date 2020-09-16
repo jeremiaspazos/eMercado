@@ -56,15 +56,27 @@ if (!sessionStorage.getItem('logueado') &&
             <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
               <a class="dropdown-item" href="my-profile.html">Mi perfil</a>
               <a class="dropdown-item" href="cart.html">Carrito de compras</a>
-              <a class="dropdown-item" href="login.html" onclick=borrardatos() >Cerrar sesión</a>
+              <a class="dropdown-item" href="login.html" onclick="borrarDatos()" >Cerrar sesión</a>
+              <a href="login.html" onclick="signOut();">Sign out</a>
+
             </div>
   `
   div1.innerHTML= htmlcontent;
   document.querySelectorAll('nav.site-header div')[0].appendChild(div1);
 
 
+  function signOut() {
+    var auth2 = gapi.auth2.getAuthInstance();
+    auth2.signOut().then(function () {
+      console.log('User signed out.');
+    });
+  }
 
-  
+
+function borrarDatos(){
+  sessionStorage.removeItem('logueado');
+  localStorage.removeItem('marcelo')
+};
 
 
 //Función que se ejecuta una vez que se haya lanzado el evento de
