@@ -5,7 +5,7 @@ function showImagesGallery(array) {
 	let imagenes = "";
 	let imgToAppend = "";
 
-		htmlContentToAppend += `<div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+	htmlContentToAppend += `<div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
 		<ol id="indicadores" class="carousel-indicators">
 		
 		</ol>
@@ -21,33 +21,35 @@ function showImagesGallery(array) {
 		  <span class="sr-only">Next</span>
 		</a>
 	  </div>`
-		document.getElementById("productImagesGallery").innerHTML = htmlContentToAppend;
+	document.getElementById("productImagesGallery").innerHTML = htmlContentToAppend;
 
-	for(i = 0 ; i < array.length; i++){
-		if(i==0){
+	for (i = 0; i < array.length; i++) {
+		if (i == 0) {
 			indicator =
-			`<li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>`
-		}else {
-			indicator += `<li data-target="#carouselExampleIndicators" data-slide-to="`+i+`"></li>`
+				`<li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>`
+		} else {
+			indicator += `<li data-target="#carouselExampleIndicators" data-slide-to="` + i + `"></li>`
 		};
 	};
-	for(i=0 ;i < array.length; i++){
+	for (i = 0; i < array.length; i++) {
 		imagenes = array[i];
 		console.log(imagenes)
-		if(i==0){ imgToAppend = `
+		if (i == 0) {
+			imgToAppend = `
 			<div class="carousel-item active">
-      <img src="`+imagenes+`" class="d-block w-100" alt="...">
+      <img src="`+ imagenes + `" class="d-block img-fluid" alt="...">
     </div> `
-		}else { imgToAppend +=
+		} else {
+			imgToAppend +=
 			`<div class="carousel-item">
-			<img src="`+imagenes+`" class="d-block w-100" alt="...">
+			<img src="`+ imagenes + `" class="d-block img-fluid" alt="...">
 		  </div> `
 		};
 	};
 	document.getElementById("indicadores").innerHTML = indicator;
 	document.getElementById("contenedorImagen").innerHTML = imgToAppend
-	
-	};
+
+};
 
 
 function showComments(array) {
@@ -71,7 +73,7 @@ function showComments(array) {
 			else {
 				htmlContentToAppend += `<p class="fa fa-star checked">`
 			}
-		}
+		};
 		htmlContentToAppend += `
 		
 		<div class="valoracion text-justify">
@@ -85,7 +87,7 @@ function showComments(array) {
     `
 	}
 	containerPre.innerHTML += htmlContentToAppend;
-}
+};
 
 
 
@@ -119,14 +121,14 @@ function agregarComentario(event) {
 	var elementoComentario = document.createElement('div');
 	elementoComentario.innerHTML += htmlContentToAppend;
 
-	var estrellas = elementoComentario.getElementsByClassName('fa-star');	
+	var estrellas = elementoComentario.getElementsByClassName('fa-star');
 
 	for (var i = 0; i < valoracion; i++) {
 		estrellas[i].classList.add('checked');
-	}
+	};
 
 	container.appendChild(elementoComentario);
-}
+};
 
 //Función que se ejecuta una vez que se haya lanzado el evento de
 //que el documento se encuentra cargado, es decir, se encuentran todos los
@@ -140,10 +142,10 @@ document.addEventListener("DOMContentLoaded", function (e) {
 			let productName = document.getElementById("productName");
 			let productDescription = document.getElementById("productDescription");
 			let productCount = document.getElementById("productCount");
-			
+
 			let parameters = new URLSearchParams(location.search);
 			let name = parameters.get('producto');
-			
+
 
 			productName.innerHTML = name;
 			productDescription.innerHTML = infoArray.description;
@@ -158,8 +160,8 @@ document.addEventListener("DOMContentLoaded", function (e) {
 				let htmlContentToAppend = "";
 				for (i = 0; i < infoArray.relatedProducts.length; i++) {
 					let productos = product[infoArray.relatedProducts[i]];
-					
-	
+
+
 					htmlContentToAppend +=
 						`<a href="product-info.html?producto=` + productos.name + `"><div class="col-sm-4">
 				<div class="card-sm" style="width: 18rem;">
@@ -170,17 +172,17 @@ document.addEventListener("DOMContentLoaded", function (e) {
 				</div>
 			  </div>
 			  </div></a>`
-	
+
 				};
 				document.getElementById("relatedpro").innerHTML += htmlContentToAppend;
 			}
-	
+
 		})
 		getJSONData(PRODUCT_INFO_COMMENTS_URL).then(function (resultObj) {
 			if (resultObj.status === "ok") {
 				commentsArray = resultObj.data;
-	
-	
+
+
 				showComments(commentsArray);
 			}
 		})

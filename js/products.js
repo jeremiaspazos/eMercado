@@ -6,7 +6,8 @@ function showProductsList(array) {
     let htmlContentToAppend = "";
     for (let i = 0; i < array.length; i++) {
         let products = array[i];
-        
+        console.log(array[3])
+
 
         htmlContentToAppend += `
         <a href="product-info.html?producto=` + products.name + `" class="list-group-item list-group-item-action">
@@ -34,9 +35,9 @@ function showProductsList(array) {
         `
 
 
-    }
+    };
     document.getElementById("container-products").innerHTML = htmlContentToAppend;
-}
+};
 //Funciones para botones de orden y filtro
 
 function ordenPrecioAscendente(array) {
@@ -46,7 +47,7 @@ function ordenPrecioAscendente(array) {
         return 0;
     })
     showProductsList(array);
-}
+};
 
 function ordenPrecioDescendente(array) {
     array.sort(function (a, b) {
@@ -55,7 +56,7 @@ function ordenPrecioDescendente(array) {
         return 0;
     })
     showProductsList(array);
-}
+};
 
 function ordenRelevancia(array) {
     array.sort(function (a, b) {
@@ -64,7 +65,7 @@ function ordenRelevancia(array) {
         return 0;
     })
     showProductsList(array);
-}
+};
 
 function filtroPrecio(array) {
     let arrayAux = [];
@@ -76,14 +77,14 @@ function filtroPrecio(array) {
         }
         showProductsList(arrayAux)
     }
-}
+};
 function limpiarFiltro(array) {
     let min = document.getElementById("priceMin").value
     let max = document.getElementById("priceMax").value
     max = ""
     min = ""
     showProductsList(array)
-}
+};
 
 //Tengo que continuar trabajando en esta Funcionalidad.
 
@@ -95,7 +96,7 @@ function filtroPorTecleo(array) {
             arrayAux.push(array[i])
     }
     showProductsList(arrayAux)
-}
+};
 
 
 

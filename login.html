@@ -7,22 +7,19 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <meta name="description" content="">
   <title>eMercado - Todo lo que busques está aquí</title>
-  <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+  <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet"
+    id="bootstrap-css">
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-  <script src="https://apis.google.com/js/platform.js" async defer></script>
-  <meta name="google-signin-client_id" content="801670730540-j073l88mv086hsqs0889mcd8qq0s1gr2.apps.googleusercontent.com">
 
-  <!------ Include the above in your HEAD tag ---------->
-  <link rel="canonical" href="https://getbootstrap.com/docs/4.3/examples/album/">
-  <link href="https://fonts.googleapis.com/css?family=Raleway:300,300i,400,400i,700,700i,900,900i" rel="stylesheet">
   <!-- Bootstrap core CSS -->
   <link href="css/bootstrap.min.css" rel="stylesheet">
   <link href="css/styles.css" rel="stylesheet">
   <link href="css/login.css" rel="stylesheet">
-  
+
   <style>
-    html, body{
+    html,
+    body {
       height: 100%;
     }
 
@@ -46,18 +43,18 @@
 </head>
 
 <body>
- 
-  
+
+
   <div class="wrapper fadeInDown">
     <div id="formContent">
       <form id="login-form">
         <input type="text" id="login" required class="fadeIn second" name="login" placeholder="Usuario">
         <input type="password" id="password" required class="fadeIn third" name="login" placeholder="Contraseña">
-        <input type="submit" class="fadeIn fourth" value="Ingresar">
-        <div class="g-signin2" data-onsuccess="onSignIn"></div>
+        <input type="submit" class="fadeIn fourth" value="Ingresar" onclick="enviarDatos(event)">
       </form>
     </div>
   </div>
   <script src="js/login.js"></script>
 </body>
+
 </html>

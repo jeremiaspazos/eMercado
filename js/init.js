@@ -6,6 +6,7 @@ const PRODUCT_INFO_URL = "https://japdevdep.github.io/ecommerce-api/product/5678
 const PRODUCT_INFO_COMMENTS_URL = "https://japdevdep.github.io/ecommerce-api/product/5678-comments.json";
 const CART_INFO_URL = "https://japdevdep.github.io/ecommerce-api/cart/987.json";
 const CART_BUY_URL = "https://japdevdep.github.io/ecommerce-api/cart/buy.json";
+//Funcion para ser enviado al login la primera vez que se ingresa al Home
 
 var showSpinner = function(){
   document.getElementById("spinner-wrapper").style.display = "block";
@@ -40,10 +41,7 @@ var getJSONData = function(url){
     });
 }
 //Funcion para ser enviado al login la primera vez que se ingresa al Home
-if (!sessionStorage.getItem('logueado') &&
-  !window.location.href.endsWith('login.html')){
-  window.location.href = 'login.html';
-};
+
 
 //funcion para incrustar nombre de usuario en NavBar
   var usuario = JSON.parse(localStorage.getItem("usuario"))
@@ -57,7 +55,6 @@ if (!sessionStorage.getItem('logueado') &&
               <a class="dropdown-item" href="my-profile.html">Mi perfil</a>
               <a class="dropdown-item" href="cart.html">Carrito de compras</a>
               <a class="dropdown-item" href="login.html" onclick="borrarDatos()" >Cerrar sesión</a>
-              <a href="login.html" onclick="signOut();">Sign out</a>
 
             </div>
   `
@@ -65,17 +62,10 @@ if (!sessionStorage.getItem('logueado') &&
   document.querySelectorAll('nav.site-header div')[0].appendChild(div1);
 
 
-  function signOut() {
-    var auth2 = gapi.auth2.getAuthInstance();
-    auth2.signOut().then(function () {
-      console.log('User signed out.');
-    });
-  }
-
-
 function borrarDatos(){
-  sessionStorage.removeItem('logueado');
-  localStorage.removeItem('marcelo')
+  sessionStorage.removeItem('logueado', 'true');
+  localStorage.clear()
+  
 };
 
 
@@ -84,7 +74,10 @@ function borrarDatos(){
 //elementos HTML presentes.
 
 document.addEventListener("DOMContentLoaded", function(e){
-
+  if (!sessionStorage.getItem('logueado') &&
+  !window.location.href.endsWith('login.html')){
+  window.location.href = 'login.html';
+};
   
 
 });
