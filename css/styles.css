@@ -172,3 +172,9 @@ a.custom-card:hover {
 .btn-secondary {
   background-color: cornflowerblue;
 }
+dt dd{
+  margin: 30px;
+}
+img {
+  margin: 10px;
+}
