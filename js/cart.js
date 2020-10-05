@@ -9,11 +9,11 @@ let envio = document.getElementById("envio");
 let img = document.getElementById("img");
 let subtotal = document.getElementById("subtotal");
 let total = document.getElementById("total");
-let tipoEnvio = 1.15
+let tipoEnvio = 1.15;
 
 
 function totals  () {
-    let nSubTotal = precio.innerHTML * unidades.value
+    let nSubTotal = precio.innerHTML * unidades.value;
     subtotal.innerHTML = nSubTotal;
     let nTotal = nSubTotal * tipoEnvio;
     
@@ -28,7 +28,7 @@ fetch(CART_INFO_URL).then(data => data.json())
     nombre.innerHTML = data.articles[0].name;
     precio.innerHTML =  data.articles[0].unitCost;
     moneda.innerHTML = data.articles[0].currency;
-    img.setAttribute("src", data.articles[0].src)
+    img.setAttribute("src", data.articles[0].src);
    
    
 

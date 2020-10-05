@@ -33,7 +33,7 @@
   <link href="css/dropzone.css" rel="stylesheet">
 </head>
 
-<body>
+<body class="bg-dark">
   <nav class="site-header sticky-top py-1 bg-info">
     <div class="container d-flex flex-column flex-md-row justify-content-between">
       <a class="py-2 d-none d-md-inline-block" href="index.html">Inicio</a>
@@ -81,15 +81,16 @@
       <div class="col-sm-2">
       </div>
       <div class="col-sm-8">
-        <div class="card">
-          <h3 class="card-header bg-primary text-white">Carrito de compras</h3>
+        <div class="card m-4">
+          <h3 class="card-header bg-primary text-white text-center">Carrito de compras</h3>
           <div class="card-body">
             <div class="card-image col-6 offset-4">
               <img class="img-fluid" src="" id="img">
             </div>
+            <form id="buy">
               <dl class="row">
                   <dt class="col-4 offset-2">Producto</dt>
-                  <dd class="col-4 " id="nombre"></dd>
+                  <dd class="col-4" id="nombre"></dd>
                   <dt class="col-4 offset-2">Precio Unitario</dt>
                   <dd class="col-4" id="precio"></dd>
                   <dt class="col-4 offset-2">Moneda</dt>
@@ -99,8 +100,7 @@
                   <dt class="col-4 offset-2">Subtotal</dt>
                   <dd class="col-4" id="subtotal"></dd>
                   <div class="col-12">
-                    <div class="d-block col-4 offset-2 my-3">
-                      <form id="envio">
+                    <div class="d-block col-4 offset-2 my-3"> 
                       <div class="custom-control custom-radio">
                         <input id="premiumradio" name="publicationType" type="radio" class="custom-control-input" checked=""
                           required="">
@@ -114,8 +114,6 @@
                         <input id="standardradio" name="publicationType" type="radio" class="custom-control-input" required="">
                         <label class="custom-control-label" for="standardradio">Standard (5%)</label>
                       </div>
-
-                      </form>
                       <div class="row">
                         <button type="button" class="m-1 btn btn-link" data-toggle="modal" data-target="#contidionsModal">Ver
                           condiciones</button>
@@ -125,11 +123,29 @@
                   <dt class="col-4 offset-2">Total</dt>
                   <dd class="col-4" id="total"></dd>
               </dl>
+            </form>
           </div>
       </div>
       </div>
       <div class="col-sm-2">
       </div>
+    </div>
+  </div>
+  <footer class="text-muted bg-dark">
+    <div class="container">
+      <p class="float-right">
+        <a href="#">Volver arriba</a>
+      </p>
+      <p>Este sitio forma parte de Desarrollo Web - JAP - 2020</p>
+      <p>Clickea <a target="_blank" href="Letra.pdf">aquí</a> para descargar la letra del obligatorio.</p>
+    </div>
+  </footer>
+  <div id="spinner-wrapper">
+    <div class="lds-ring">
+      <div></div>
+      <div></div>
+      <div></div>
+      <div></div>
     </div>
   </div>
   <script src="js/jquery-3.4.1.min.js"></script>
