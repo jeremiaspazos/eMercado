@@ -1,12 +1,11 @@
-//Función que se ejecuta una vez que se haya lanzado el evento de
-//que el documento se encuentra cargado, es decir, se encuentran todos los
-//elementos HTML presentes.
+
 let nombre = document.getElementById("nombre");
 let precio = document.getElementById("precio");
 let moneda = document.getElementById("moneda");
 let unidades = document.getElementById("unidades");
 let envio = document.getElementById("envio");
 let img = document.getElementById("img");
+let costoEnvio = document.getElementById("costoEnvio")
 let subtotal = document.getElementById("subtotal");
 let total = document.getElementById("total");
 let tipoEnvio = 1.15;
@@ -16,7 +15,8 @@ function totals  () {
     let nSubTotal = precio.innerHTML * unidades.value;
     subtotal.innerHTML = nSubTotal;
     let nTotal = nSubTotal * tipoEnvio;
-    
+    let nCostoEnvio = nTotal - nSubTotal;
+    costoEnvio.innerHTML = nCostoEnvio.toFixed(2);
     total.innerHTML = nTotal.toFixed(2);
 }
 
@@ -28,9 +28,10 @@ fetch(CART_INFO_URL).then(data => data.json())
     nombre.innerHTML = data.articles[0].name;
     precio.innerHTML =  data.articles[0].unitCost;
     moneda.innerHTML = data.articles[0].currency;
+    unidades.value = data.articles[0].count
     img.setAttribute("src", data.articles[0].src);
    
-   
+    totals();
 
    
     });

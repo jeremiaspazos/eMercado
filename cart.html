@@ -96,7 +96,7 @@
                   <dt class="col-4 offset-2">Moneda</dt>
                   <dd class="col-4" id="moneda"></dd> 
                   <dt class="col-4 offset-2">Unidades</dt>
-                  <input type="number" range=0-9" value="0" min="1" max="99" id="unidades" placeholder="Unidades" required onkeyup="totals()">
+                  <input type="number" value="0" min="1" max="99" id="unidades" placeholder="Unidades" required onkeyup="totals()" onchange="totals()">
                   <dt class="col-4 offset-2">Subtotal</dt>
                   <dd class="col-4" id="subtotal"></dd>
                   <div class="col-12">
@@ -120,8 +120,13 @@
                       </div>
                     </div>
                   </div>
+                  <dt class="col-4 offset-2">Costo de envio</dt>
+                  <dd class="col-4" id="costoEnvio"></dd>
                   <dt class="col-4 offset-2">Total</dt>
                   <dd class="col-4" id="total"></dd>
+                  <div class="col-6 offset-2">
+                    <button type="submit" class="btn btn-lg btn-success">Comprar!</button>
+                  </div>
               </dl>
             </form>
           </div>
