@@ -6,7 +6,6 @@ function showProductsList(array) {
     let htmlContentToAppend = "";
     for (let i = 0; i < array.length; i++) {
         let products = array[i];
-        console.log(array[3])
 
 
         htmlContentToAppend += `

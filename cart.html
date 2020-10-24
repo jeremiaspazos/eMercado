@@ -76,29 +76,57 @@
       </div>
     </div>
   </div>
-  <div class="container">
-    <div class="row row-content">
-      <div class="col-sm-2">
-      </div>
-      <div class="col-sm-8">
-        <div class="card m-4">
-          <h3 class="card-header bg-primary text-white text-center">Carrito de compras</h3>
-          <div class="card-body">
-            <div class="card-image col-6 offset-4">
-              <img class="img-fluid" src="" id="img">
+  <div class="modal fade" tabindex="-1" role="dialog" id="cardModal">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Ingrese sus datos</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <div class="container">
+            <div class="row">
+              <div class="col-sm-12">
+                <div class="form-group">
+                  <form class="form-group" id="cardDetails">
+                    <label classfor="tarjetaCredito">Numero:<input class="form-control" name="tarjetaCredito" id="tarjetaCredito" type="number" required></label>
+                    <label for="identificador">Verificador:<input class="form-control col-sm-4" name="identificador" id="identificador" type="number" maxLength="3" required></label>
+                    <input type="submit" class="btn btn-submit" onclick="event.preventDefault(), alert('Sus datos han sido ingresados correctamente')">   
+                  </form>
+                </div>
+              </div>
             </div>
-            <form id="buy">
-              <dl class="row">
-                  <dt class="col-4 offset-2">Producto</dt>
-                  <dd class="col-4" id="nombre"></dd>
-                  <dt class="col-4 offset-2">Precio Unitario</dt>
-                  <dd class="col-4" id="precio"></dd>
-                  <dt class="col-4 offset-2">Moneda</dt>
-                  <dd class="col-4" id="moneda"></dd> 
-                  <dt class="col-4 offset-2">Unidades</dt>
-                  <input type="number" value="0" min="1" max="99" id="unidades" placeholder="Unidades" required onkeyup="totals()" onchange="totals()">
-                  <dt class="col-4 offset-2">Subtotal</dt>
-                  <dd class="col-4" id="subtotal"></dd>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-primary" data-dismiss="modal">Cerrar</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div id="container-cart" class="container" style="margin-top: 10px;">
+  </div>
+  <div id="totals-cart" class="container">
+    <div class="col"></div>
+    <dl class="col-6 bg-light" style="margin:auto; border-radius: 15px; margin-top: 20px;">
+    <dt class="col-4 offset-2">A pagar en</dt>
+    <div class="col-12" >
+      <div class="d-block col-4 offset-2 my-3" > 
+                  <div class="custom-control custom-radio">
+                    <input id="dolar" name="currency" type="radio" value="USD" class="custom-control-input" required="" checked="">
+                        <label class="custom-control-label" for="dolar">USD</label>
+                  </div>
+                  <div class="custom-control custom-radio">
+                    <input id="pesos" name="currency" value="UYU" type="radio" class="custom-control-input" required="">
+                        <label class="custom-control-label" for="pesos">UYU</label>
+                  </div>
+                  </div>
+                  <div class="col-12 offset-2">
+                    <p id=subtotalCompra>Subtotal de esta compra<p id="subtotalNum"></p></p>
+                  </div>
+                </div>
                   <div class="col-12">
                     <div class="d-block col-4 offset-2 my-3"> 
                       <div class="custom-control custom-radio">
@@ -118,23 +146,24 @@
                         <button type="button" class="m-1 btn btn-link" data-toggle="modal" data-target="#contidionsModal">Ver
                           condiciones</button>
                       </div>
+                      <div class="row">
+                        <dt>Tipos de pago</dt>
+                        <div class="col-sm-6">
+                        <button type="button" class="m-1 btn btn-primary" data-toggle="modal" data-target="#cardModal">Credito</button>
+                        </div>
+                        <div class="col-sm-6">
+                        <button type="button" class="m-1 btn btn-primary" data-toggle="modal" data-target="#debitModal">Debito</button>
+                       </div>
+                      </div>
                     </div>
                   </div>
-                  <dt class="col-4 offset-2">Costo de envio</dt>
-                  <dd class="col-4" id="costoEnvio"></dd>
-                  <dt class="col-4 offset-2">Total</dt>
-                  <dd class="col-4" id="total"></dd>
+                  <dt class="col-4 offset-2" id="costoEnvio"></dt>
+                  <dt class="col-4 offset-2" id="total"></dt>
+                  
                   <div class="col-6 offset-2">
                     <button type="submit" class="btn btn-lg btn-success">Comprar!</button>
                   </div>
-              </dl>
-            </form>
-          </div>
-      </div>
-      </div>
-      <div class="col-sm-2">
-      </div>
-    </div>
+                </dl>
   </div>
   <footer class="text-muted bg-dark">
     <div class="container">
