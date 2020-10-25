@@ -178,6 +178,9 @@ dt dd{
 #img {
   margin: 10px;
 }
-p { 
-  display:inline;
+input[type=”number”]
+{
+-webkit-appearance: textfield !important;
+margin: 0;
+-moz-appearance:textfield !important;
 }

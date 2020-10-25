@@ -18,16 +18,13 @@ function totals  () {
     
 }
 
-        
-    
-
 function cartDisplay (array){
     
     for(i = 0 ; i < array.length; i++){
       let  article = array[i]
       
      htmlContentToAppend += `
-        <div class="list-group-item list-group-item-action" style="border-radius: 15px; margin-top: 5px;">
+        <div class="list-group-item list-group-item-action" id="`+ article.name + `" style="border-radius: 15px; margin-top: 5px;">
             <div class="row">
                 <div class="col-3">
                     <img src="` + article.src + `" class="img-thumbnail" style="width:150px;">
@@ -35,10 +32,10 @@ function cartDisplay (array){
                 <div class="col">
                     <div class="d-flex w-100 justify-content-between">
                         <h4 class="mb-1">`+ article.name + `</h4>
-                        <p class="text-muted">` + article.unitCost + ` `+article.currency+` </p>
+                        <p class="text-muted">` + article.unitCost + ` `+article.currency+`  </p>
                     </div>
                 <div class="col-3">
-                <p>Cantidad <input type="number" min="0" id="count`+i+`" value="`+article.count+`" onkeyup="articleSubtotals(cartArray)" onchange="articleSubtotals(cartArray)"></p>
+                <label for="count`+i+`">Cantidad<input type="number" min="1" id="count`+i+`" value="`+article.count+`" name="count`+i+`" onkeyup="articleSubtotals(cartArray)" onchange="articleSubtotals(cartArray)"></label>
                 <p id="subtotal`+i+`">Subtotal por articulo = </p>
                 </div>
                 </div>
@@ -49,6 +46,8 @@ function cartDisplay (array){
     }
     document.getElementById("container-cart").innerHTML = htmlContentToAppend
 }
+
+
 
 function articleSubtotals(array){
     for(i=0 ; i<array.length ; i++){
@@ -129,8 +128,76 @@ function exchanger(array){
     }
 }
 
+function validatePayDebit(e){
+    let debitInput = document.getElementById("tarjetaDebito").value;
+    let debitExpress = /^\d{16}$/
+    
+       
+    if(!debitExpress.test(debitInput)){
+        e.preventDefault();
+        alert("Informacion Invalida. Ingresar 16 digitos, sin incluir guion o espacios.");
+       
+    }
+    else{
+        alert('Datos enviados con exito.')
+        event.preventDefault()
+        let debitNumSt = JSON.stringify(debitInput);
+        localStorage.setItem("numero", debitNumSt);
+        $('#debitModal').modal('hide');
+    }
+    
+}
 
+function validatePay(e){
+    let creditInput = document.getElementById("tarjetaCredito").value;
+    let creditExpress = /^\d{16}$/
+    let cvvInput = document.getElementById("identificador").value;
+    let cvvExpress = /^\d{3}$/
+    let monthInput = document.getElementById("mes").value;
+    let monthExpress = /^(0[1-9])|(1[0-2])$/
+    let yearInput = document.getElementById("año").value;
+    let yearExpress = /^\d{4}$/
 
+    if (!(monthExpress.test(monthInput))){
+        e.preventDefault();
+        alert("Informacion Invalida. Debe ser un mes entre 01 y 12.");
+       
+    }else
+   
+    if(!creditExpress.test(creditInput)){
+        e.preventDefault();
+        alert("Informacion Invalida. Ingresar 16 digitos, sin incluir guion o espacios.");
+       
+    }else
+    
+    if(!cvvExpress.test(cvvInput)){
+        e.preventDefault();
+        alert("Informacion Invalida. Ingresar un numero de 3 digitos");
+       
+    }else
+   
+    
+    if(!yearExpress.test(yearInput)){
+        e.preventDefault();
+        alert("Informacion Invalida. Ingresar un numero de 4 digitos");
+        
+    }
+    else{
+        alert('Datos enviados con exito.')
+        event.preventDefault()
+        
+        let creditNumSt = JSON.stringify(creditInput);
+        sessionStorage.setItem("numero", creditNumSt);
+        let cvvNumSt = JSON.stringify(cvvInput);
+        sessionStorage.setItem("verificador", cvvNumSt);
+        let monthNumSt = JSON.stringify(monthInput);
+        sessionStorage.setItem("mes", monthNumSt);
+        let yearNumSt = JSON.stringify(yearInput);
+        sessionStorage.setItem("año", yearNumSt);
+        $('#cardModal').modal('hide');
+    }
+    
+}
 
 document.addEventListener("DOMContentLoaded", function(e){
 fetch(CART_INFO_URL).then(data => data.json())
@@ -164,5 +231,11 @@ fetch(CART_INFO_URL).then(data => data.json())
     document.getElementById("standardradio").addEventListener("change", function(){
         tipoEnvio = 1.05;
         totals();
+    });
+    document.getElementById("submit-credit").addEventListener("click", function(){
+        validatePay(event);
+    });
+    document.getElementById("submit-debit").addEventListener("click", function(){
+        validatePayDebit(event);
     });
 });

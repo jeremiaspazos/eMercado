@@ -30,10 +30,18 @@
     p{
       display:inline;
     }
+    input[type=number]::-webkit-inner-spin-button,
+input[type=number]::-webkit-outer-spin-button {
+-webkit-appearance: none;
+margin: 0;
+}
+
+input[type=number] { -moz-appearance:textfield; }
   </style>
   <link href="css/bootstrap.min.css" rel="stylesheet">
-  <link href="css/styles.css" rel="stylesheet">
+ 
   <link href="css/dropzone.css" rel="stylesheet">
+  <link href="css/styles.css" rel="stylesheet"> 
 </head>
 
 <body class="bg-dark">
@@ -46,6 +54,7 @@
       
     </div>
   </nav>
+  <form>
   <div class="modal fade" tabindex="-1" role="dialog" id="contidionsModal">
     <div class="modal-dialog" role="document">
       <div class="modal-content">
@@ -79,6 +88,35 @@
       </div>
     </div>
   </div>
+  <div class="modal fade" tabindex="-1" role="dialog" id="debitModal">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Ingrese sus datos</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <div class="container">
+            <div class="row">
+              <div class="col-sm-12">
+                <div class="form-group">
+                  <form class="form-group" id="cardDetails">
+                    <label for="tarjetaDebito">Numero:<input class="form-control" name="tarjetaDebito" id="tarjetaDebito" placeholder="Ingrese 16 digitos" type="number" required></label>
+                    <input type="submit" id="submit-debit" class="btn btn-submit">   
+                  </form>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-primary" data-dismiss="modal">Cerrar</button>
+        </div>
+      </div>
+    </div>
+   </div>
   <div class="modal fade" tabindex="-1" role="dialog" id="cardModal">
     <div class="modal-dialog" role="document">
       <div class="modal-content">
@@ -94,9 +132,11 @@
               <div class="col-sm-12">
                 <div class="form-group">
                   <form class="form-group" id="cardDetails">
-                    <label classfor="tarjetaCredito">Numero:<input class="form-control" name="tarjetaCredito" id="tarjetaCredito" type="number" required></label>
-                    <label for="identificador">Verificador:<input class="form-control col-sm-4" name="identificador" id="identificador" type="number" maxLength="3" required></label>
-                    <input type="submit" class="btn btn-submit" onclick="event.preventDefault(), alert('Sus datos han sido ingresados correctamente')">   
+                    <label for="tarjetaCredito">Numero:<input class="form-control" name="tarjetaCredito" id="tarjetaCredito" placeholder="Ingrese 16 digitos" type="number" required></label>
+                    <label for="identificador">Verificador:<input class="form-control col-sm-4" name="identificador" placeholder="Ingrese 3 digitos" id="identificador" type="number" maxLength="3" required></label>
+                    <label for="mes">Mes:<input class="form-control" name="mes" id="mes" type="number"placeholder="Ingese 2 digitos"  required></label>
+                    <label for="año">Año:<input class="form-control" name="año" id="año" type="number"placeholder="Ingrese 4 digitos"  required></label>
+                    <input type="submit" id="submit-credit" class="btn btn-submit">   
                   </form>
                 </div>
               </div>
@@ -108,7 +148,8 @@
         </div>
       </div>
     </div>
-  </div>
+   </div>
+   <form action="#" method="get">
   <div id="container-cart" class="container" style="margin-top: 10px;">
   </div>
   <div id="totals-cart" class="container">
@@ -130,44 +171,47 @@
                     <p id=subtotalCompra>Subtotal de esta compra<p id="subtotalNum"></p></p>
                   </div>
                 </div>
-                  <div class="col-12">
-                    <div class="d-block col-4 offset-2 my-3"> 
+                <dt class="col-4 offset-2">Tipo de envio</dt>
+                  <div>
+                   <div class="d-block col-4 offset-2 my-3"> 
                       <div class="custom-control custom-radio">
-                        <input id="premiumradio" name="publicationType" type="radio" class="custom-control-input" checked=""
+                        <input id="premiumradio" name="publicationType"  value="premium" type="radio" class="custom-control-input" checked=""
                           required="">
                         <label class="custom-control-label" for="premiumradio">Premium (15%)</label>
                       </div>
                       <div class="custom-control custom-radio">
-                        <input id="expressradio" name="publicationType" type="radio" class="custom-control-input" required="">
+                        <input id="expressradio" name="publicationType" value="express" type="radio" class="custom-control-input" required="">
                         <label class="custom-control-label" for="expressradio">Express (7%)</label>
                       </div>
                       <div class="custom-control custom-radio">
-                        <input id="standardradio" name="publicationType" type="radio" class="custom-control-input" required="">
+                        <input id="standardradio" name="publicationType" type="radio" value="standart" class="custom-control-input" required="">
                         <label class="custom-control-label" for="standardradio">Standard (5%)</label>
                       </div>
                       <div class="row">
                         <button type="button" class="m-1 btn btn-link" data-toggle="modal" data-target="#contidionsModal">Ver
                           condiciones</button>
                       </div>
-                      <div class="row">
-                        <dt>Tipos de pago</dt>
-                        <div class="col-sm-6">
-                        <button type="button" class="m-1 btn btn-primary" data-toggle="modal" data-target="#cardModal">Credito</button>
-                        </div>
-                        <div class="col-sm-6">
-                        <button type="button" class="m-1 btn btn-primary" data-toggle="modal" data-target="#debitModal">Debito</button>
-                       </div>
+                      <div>
+                        <dt class=" col-md-12 offset" style="padding-left: 0px;">Tipos de pago</dt>
+                        <div class="col-sm-12">
+                          <input type="radio" class="control-input" name="payMethod"value="card" data-toggle="modal" data-target="#cardModal" required=""></input>
+                          <label for="payMetod" >Credito</label>
+                        </br>
+                        
+                       <input type="radio" class="control-input" name="payMethod"data-toggle="modal" data-target="#debitModal" required=""></input>
+                       
+                        <label for="payMetod">Debito</label>
                       </div>
                     </div>
                   </div>
                   <dt class="col-4 offset-2" id="costoEnvio"></dt>
                   <dt class="col-4 offset-2" id="total"></dt>
-                  
                   <div class="col-6 offset-2">
-                    <button type="submit" class="btn btn-lg btn-success">Comprar!</button>
+                    <button type="submit" style="margin-bottom: 10px;"class="btn btn-lg btn-success">Comprar!</button>
                   </div>
                 </dl>
   </div>
+</form>
   <footer class="text-muted bg-dark">
     <div class="container">
       <p class="float-right">
