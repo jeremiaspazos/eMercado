@@ -27,21 +27,25 @@
         font-size: 3.5rem;
       }
     }
-    p{
-      display:inline;
-    }
-    input[type=number]::-webkit-inner-spin-button,
-input[type=number]::-webkit-outer-spin-button {
--webkit-appearance: none;
-margin: 0;
-}
 
-input[type=number] { -moz-appearance:textfield; }
+    p {
+      display: inline;
+    }
+
+    input[type=number]::-webkit-inner-spin-button,
+    input[type=number]::-webkit-outer-spin-button {
+      -webkit-appearance: none;
+      margin: 0;
+    }
+
+    input[type=number] {
+      -moz-appearance: textfield;
+    }
   </style>
   <link href="css/bootstrap.min.css" rel="stylesheet">
- 
+
   <link href="css/dropzone.css" rel="stylesheet">
-  <link href="css/styles.css" rel="stylesheet"> 
+  <link href="css/styles.css" rel="stylesheet">
 </head>
 
 <body class="bg-dark">
@@ -51,189 +55,208 @@ input[type=number] { -moz-appearance:textfield; }
       <a class="py-2 d-none d-md-inline-block" href="categories.html">Categorías</a>
       <a class="py-2 d-none d-md-inline-block" href="products.html">Productos</a>
       <a class="py-2 d-none d-md-inline-block" href="sell.html">Vender</a>
-      
+
     </div>
   </nav>
   <form>
-  <div class="modal fade" tabindex="-1" role="dialog" id="contidionsModal">
-    <div class="modal-dialog" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title">Tipos de envio</h5>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </div>
-        <div class="modal-body">
-          <div class="container">
-            <div class="row">
-              <h5 class="text-warning">Premium (15%)</h5>
-              <p class="muted text-justify">Tu producto llega a ti dentro de 2 a 5 dias.</p>
-            </div>
-            <hr>
-            <div class="row">
-              <h5 class="text-primary">Express (7%)</h5>
-              <p class="muted text-justify">Tu producto llega a ti dentro de 5 a 8 dias.</p>
-            </div>
-            <hr>
-            <div class="row">
-              <h5 class="text-secondary">Standart (5%)</h5>
-              <p class="muted text-justify">Tu producto llega a ti dentro de 12 a 15 dias.</p>
+    <div class="modal fade" tabindex="-1" role="dialog" id="contidionsModal">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title">Tipos de envio</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <div class="container">
+              <div class="row">
+                <h5 class="text-warning">Premium (15%)</h5>
+                <p class="muted text-justify">Tu producto llega a ti dentro de 2 a 5 dias.</p>
+              </div>
+              <hr>
+              <div class="row">
+                <h5 class="text-primary">Express (7%)</h5>
+                <p class="muted text-justify">Tu producto llega a ti dentro de 5 a 8 dias.</p>
+              </div>
+              <hr>
+              <div class="row">
+                <h5 class="text-secondary">Standart (5%)</h5>
+                <p class="muted text-justify">Tu producto llega a ti dentro de 12 a 15 dias.</p>
+              </div>
             </div>
           </div>
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-primary" data-dismiss="modal">Cerrar</button>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-primary" data-dismiss="modal">Cerrar</button>
+          </div>
         </div>
       </div>
     </div>
-  </div>
-  <div class="modal fade" tabindex="-1" role="dialog" id="debitModal">
-    <div class="modal-dialog" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title">Ingrese sus datos</h5>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </div>
-        <div class="modal-body">
-          <div class="container">
-            <div class="row">
-              <div class="col-sm-12">
-                <div class="form-group">
-                  <form class="form-group" id="cardDetails">
-                    <label for="tarjetaDebito">Numero:<input class="form-control" name="tarjetaDebito" id="tarjetaDebito" placeholder="Ingrese 16 digitos" type="number" required></label>
-                    <input type="submit" id="submit-debit" class="btn btn-submit">   
-                  </form>
+    <div class="modal fade" tabindex="-1" role="dialog" id="debitModal">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title">Ingrese sus datos</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <div class="container">
+              <div class="row">
+                <div class="col-sm-12">
+                  <div class="form-group">
+                    <form class="form-group" id="cardDetails">
+                      <label for="tarjetaDebito">Numero:<input class="form-control" name="tarjetaDebito"
+                          id="tarjetaDebito" placeholder="Ingrese 16 digitos" type="number" required></label>
+                      <button type="submit" id="submit-debit" class="btn btn-success">Enviar datos</button>
+                    </form>
+                  </div>
                 </div>
               </div>
             </div>
           </div>
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-primary" data-dismiss="modal">Cerrar</button>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-primary" data-dismiss="modal">Cerrar</button>
+          </div>
         </div>
       </div>
     </div>
-   </div>
-  <div class="modal fade" tabindex="-1" role="dialog" id="cardModal">
-    <div class="modal-dialog" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title">Ingrese sus datos</h5>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </div>
-        <div class="modal-body">
-          <div class="container">
-            <div class="row">
-              <div class="col-sm-12">
-                <div class="form-group">
-                  <form class="form-group" id="cardDetails">
-                    <label for="tarjetaCredito">Numero:<input class="form-control" name="tarjetaCredito" id="tarjetaCredito" placeholder="Ingrese 16 digitos" type="number" required></label>
-                    <label for="identificador">Verificador:<input class="form-control col-sm-4" name="identificador" placeholder="Ingrese 3 digitos" id="identificador" type="number" maxLength="3" required></label>
-                    <label for="mes">Mes:<input class="form-control" name="mes" id="mes" type="number"placeholder="Ingese 2 digitos"  required></label>
-                    <label for="año">Año:<input class="form-control" name="año" id="año" type="number"placeholder="Ingrese 4 digitos"  required></label>
-                    <input type="submit" id="submit-credit" class="btn btn-submit">   
-                  </form>
+    <div class="modal fade" tabindex="-1" role="dialog" id="cardModal">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title">Ingrese sus datos</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <div class="container">
+              <div class="row">
+                <div class="col-sm-12">
+                  <div class="form-group">
+                    <form class="form-group" id="cardDetails">
+                      <label for="tarjetaCredito">Numero:<input class="form-control" name="tarjetaCredito"
+                          id="tarjetaCredito" placeholder="Ingrese 16 digitos" type="number" required></label>
+                      <label for="identificador">Verificador:<input class="form-control col-sm-4" name="identificador"
+                          placeholder="Ingrese 3 digitos" id="identificador" type="number" maxLength="3"
+                          required></label>
+                      <label for="mes">Mes:<input class="form-control" name="mes" id="mes" type="number"
+                          placeholder="Ingese 2 digitos" required></label>
+                      <label for="año">Año:<input class="form-control" name="año" id="año" type="number"
+                          placeholder="Ingrese 4 digitos" required></label>
+                      <button type="submit" id="submit-credit" class="btn btn-success">Enviar datos</button>
+                    </form>
+                  </div>
                 </div>
               </div>
             </div>
           </div>
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-primary" data-dismiss="modal">Cerrar</button>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-primary" data-dismiss="modal">Cerrar</button>
+          </div>
         </div>
       </div>
     </div>
-   </div>
-   <form action="#" method="get">
-  <div id="container-cart" class="container" style="margin-top: 10px;">
-  </div>
-  <div id="totals-cart" class="container">
-    <div class="col"></div>
-    <dl class="col-6 bg-light" style="margin:auto; border-radius: 15px; margin-top: 20px;">
-    <dt class="col-4 offset-2">A pagar en</dt>
-    <div class="col-12" >
-      <div class="d-block col-4 offset-2 my-3" > 
-                  <div class="custom-control custom-radio">
-                    <input id="dolar" name="currency" type="radio" value="USD" class="custom-control-input" required="" checked="">
-                        <label class="custom-control-label" for="dolar">USD</label>
-                  </div>
-                  <div class="custom-control custom-radio">
-                    <input id="pesos" name="currency" value="UYU" type="radio" class="custom-control-input" required="">
-                        <label class="custom-control-label" for="pesos">UYU</label>
-                  </div>
-                  </div>
-                  <div class="col-12 offset-2">
-                    <p id=subtotalCompra>Subtotal de esta compra<p id="subtotalNum"></p></p>
-                  </div>
+    <form action="#" method="get" onsubmit="alert('Compra realizada! Gracias por elegirnos!')">
+      <div id="container-cart" class="container" style="margin-top: 10px;">
+      </div>
+      <div id="totals-cart" class="container">
+        <div class="col"></div>
+        <dl class="col-6 bg-light" style="margin:auto; border-radius: 15px; margin-top: 20px;">
+          <dt class="col-4 offset-2">A pagar en</dt>
+          <div class="col-12">
+            <div class="d-block col-4 offset-2 my-3">
+              <div class="custom-control custom-radio">
+                <input id="dolar" name="currency" type="radio" value="USD" class="custom-control-input" required=""
+                  checked="">
+                <label class="custom-control-label" for="dolar">USD</label>
+              </div>
+              <div class="custom-control custom-radio">
+                <input id="pesos" name="currency" value="UYU" type="radio" class="custom-control-input" required="">
+                <label class="custom-control-label" for="pesos">UYU</label>
+              </div>
+            </div>
+            <div class="col-12 offset-2">
+              <p id=subtotalCompra>Subtotal de esta compra
+              <p id="subtotalNum"></p>
+              </p>
+            </div>
+          </div>
+          <dt class="col-4 offset-2">Tipo de envio</dt>
+          <div>
+            <div class="col-4 offset-2">
+              <label for="direccion">Direccion</label>
+              <input type="text" name="direccion" id="direccion" placeholder="Calle y numero de puerta" required="">
+              <label for="esquina">Esquina</label>
+              <input type="text" name="esquina" id="esquina" placeholder="Esquina" required="">
+              <label for="direccion">Pais</label>
+              <input type="text" name="pais" id="pais" placeholder="Pais" required="">
+            </div>
+            <div class="d-block col-4 offset-2 my-3">
+              <div class="custom-control custom-radio">
+                <input id="premiumradio" name="publicationType" value="premium" type="radio"
+                  class="custom-control-input" checked="" required="">
+                <label class="custom-control-label" for="premiumradio">Premium (15%)</label>
+              </div>
+              <div class="custom-control custom-radio">
+                <input id="expressradio" name="publicationType" value="express" type="radio"
+                  class="custom-control-input" required="">
+                <label class="custom-control-label" for="expressradio">Express (7%)</label>
+              </div>
+              <div class="custom-control custom-radio">
+                <input id="standardradio" name="publicationType" type="radio" value="standart"
+                  class="custom-control-input" required="">
+                <label class="custom-control-label" for="standardradio">Standard (5%)</label>
+              </div>
+              <div class="row">
+                <button type="button" class="m-1 btn btn-link" data-toggle="modal" data-target="#contidionsModal">Ver
+                  condiciones</button>
+              </div>
+              <div>
+                <dt class=" col-md-12 offset" style="padding-left: 0px;">Tipos de pago</dt>
+                <div class="col-sm-12">
+                  <input type="radio" class="control-input" name="payMethod" value="card" data-toggle="modal"
+                    data-target="#cardModal" required=""></input>
+                  <label for="payMetod">Credito</label>
+                  </br>
+                  <input type="radio" class="control-input" name="payMethod" data-toggle="modal"
+                    data-target="#debitModal" required=""></input>
+                  <label for="payMetod">Debito</label>
                 </div>
-                <dt class="col-4 offset-2">Tipo de envio</dt>
-                  <div>
-                   <div class="d-block col-4 offset-2 my-3"> 
-                      <div class="custom-control custom-radio">
-                        <input id="premiumradio" name="publicationType"  value="premium" type="radio" class="custom-control-input" checked=""
-                          required="">
-                        <label class="custom-control-label" for="premiumradio">Premium (15%)</label>
-                      </div>
-                      <div class="custom-control custom-radio">
-                        <input id="expressradio" name="publicationType" value="express" type="radio" class="custom-control-input" required="">
-                        <label class="custom-control-label" for="expressradio">Express (7%)</label>
-                      </div>
-                      <div class="custom-control custom-radio">
-                        <input id="standardradio" name="publicationType" type="radio" value="standart" class="custom-control-input" required="">
-                        <label class="custom-control-label" for="standardradio">Standard (5%)</label>
-                      </div>
-                      <div class="row">
-                        <button type="button" class="m-1 btn btn-link" data-toggle="modal" data-target="#contidionsModal">Ver
-                          condiciones</button>
-                      </div>
-                      <div>
-                        <dt class=" col-md-12 offset" style="padding-left: 0px;">Tipos de pago</dt>
-                        <div class="col-sm-12">
-                          <input type="radio" class="control-input" name="payMethod"value="card" data-toggle="modal" data-target="#cardModal" required=""></input>
-                          <label for="payMetod" >Credito</label>
-                        </br>
-                        
-                       <input type="radio" class="control-input" name="payMethod"data-toggle="modal" data-target="#debitModal" required=""></input>
-                       
-                        <label for="payMetod">Debito</label>
-                      </div>
-                    </div>
-                  </div>
-                  <dt class="col-4 offset-2" id="costoEnvio"></dt>
-                  <dt class="col-4 offset-2" id="total"></dt>
-                  <div class="col-6 offset-2">
-                    <button type="submit" style="margin-bottom: 10px;"class="btn btn-lg btn-success">Comprar!</button>
-                  </div>
-                </dl>
-  </div>
-</form>
-  <footer class="text-muted bg-dark">
-    <div class="container">
-      <p class="float-right">
-        <a href="#">Volver arriba</a>
-      </p>
-      <p>Este sitio forma parte de Desarrollo Web - JAP - 2020</p>
-      <p>Clickea <a target="_blank" href="Letra.pdf">aquí</a> para descargar la letra del obligatorio.</p>
+              </div>
+            </div>
+            <dt class="col-6 offset-2" id="costoEnvio"></dt>
+            <dt class="col-6 offset-2" id="total"></dt>
+            <div class="col-6 offset-2">
+              <button type="submit" style="margin-bottom: 10px;" class="btn btn-lg btn-success" id="comprar-button">Comprar!</button>
+            </div>
+        </dl>
+      </div>
+    </form>
+    <footer class="text-muted bg-dark">
+      <div class="container">
+        <p class="float-right">
+          <a href="#">Volver arriba</a>
+        </p>
+        <p>Este sitio forma parte de Desarrollo Web - JAP - 2020</p>
+        <p>Clickea <a target="_blank" href="Letra.pdf">aquí</a> para descargar la letra del obligatorio.</p>
+      </div>
+    </footer>
+    <div id="spinner-wrapper">
+      <div class="lds-ring">
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+      </div>
     </div>
-  </footer>
-  <div id="spinner-wrapper">
-    <div class="lds-ring">
-      <div></div>
-      <div></div>
-      <div></div>
-      <div></div>
-    </div>
-  </div>
-  <script src="js/jquery-3.4.1.min.js"></script>
-  <script src="js/bootstrap.bundle.min.js"></script>
-  <script src="js/dropzone.js"></script>
-  <script src="js/init.js"></script>
-  <script src="js/cart.js"></script>
+    <script src="js/jquery-3.4.1.min.js"></script>
+    <script src="js/bootstrap.bundle.min.js"></script>
+    <script src="js/dropzone.js"></script>
+    <script src="js/init.js"></script>
+    <script src="js/cart.js"></script>
 </body>
 
 </html>

@@ -21,7 +21,9 @@
       -ms-user-select: none;
       user-select: none;
     }
-
+    p {
+      display: inline;
+    }
     @media (min-width: 768px) {
       .bd-placeholder-img-lg {
         font-size: 3.5rem;
@@ -33,7 +35,7 @@
   <link href="css/dropzone.css" rel="stylesheet">
 </head>
 
-<body>
+<body class="bg-dark">
   <nav class="site-header sticky-top py-1 bg-info">
     <div class="container d-flex flex-column flex-md-row justify-content-between">
       <a class="py-2 d-none d-md-inline-block" href="index.html">Inicio</a>
@@ -42,26 +44,50 @@
       <a class="py-2 d-none d-md-inline-block" href="sell.html">Vender</a>
     </div>
   </nav>
-  <div class="container p-5">
-    <div class="alert alert-danger" role="alert" style="position: relative; width:auto; top: 0;">
-      <h4 class="alert-heading">¡A trabajar! :)</h4>
-      <p>Esta sección corresponde a: Entrega 7 (Fecha de entrega: 8/11/202020) -> Punto 1 y 2.</p>
-      <hr>
-      <p class="mb-0">Para saber qué debes hacer, fijate en la actividad en CREA correspondiente a esta entrega.</p>
+  <div class="container">
+    <div class="row row-content">
+      <div class="col-sm">
+
+      </div>
+      <div class="col-sm-8">
+        <div class="card  mb-3 mt-3" style="width: 100%,;;">
+          <div class="card-header">
+            <h5 class="card-title text-center">Bienvenido a su perfil.</h5>
+            <p class="card-text text-center">Aqui encontrara toda su informacion personal.</p>
+          </div>
+          <div class="card-body">
+          
+        
+          <ul class="list-group list-group-flush">
+            <li class="list-group-item">Nombre completo<input  id="nombre" type="text" class="ml-3"placeholder="Introduzca su nombre..." value="" disabled/></li>
+            <li class="list-group-item">Edad<input  id="edad" type="age" min="0" max="125" class="ml-3"placeholder="Introduzca su edad..." value="" disabled/></li>
+            <li class="list-group-item">Email<input  id="email" type="email" class="ml-3"placeholder="Introduzca email..." value=" " disabled/></li>
+            <li class="list-group-item">Telefono de contacto<input  id="tel" type="tel" class="ml-3"placeholder="Introduzca su telefono..." value="" disabled/></li>
+            
+          </ul>
+          <div class="card-footer">
+            <button type="button" class="btn btn-success" onClick="guardarDatos()">Guardar Datos</button>
+            <button type="button" class="btn btn-danger" onClick="modificarDatos()">Modificar Perfil</button>
+            
+          </div>
+        </div>
+      </div>
+    </div>
+      <div class="col-sm">
+         
+      </div>
     </div>
   </div>
+  
   <footer class="text-muted bg-dark">
     <div class="container">
+      <p class="float-right">
+        <a href="#">Volver arriba</a>
+      </p>
       <p>Este sitio forma parte de Desarrollo Web - JAP - 2020</p>
       <p>Clickea <a target="_blank" href="Letra.pdf">aquí</a> para descargar la letra del obligatorio.</p>
     </div>
   </footer>
-  <div class="alert fade alert-success" role="alert" id="alertResult">
-    <span id="resultSpan"></span>
-    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-      <span aria-hidden="true">&times;</span>
-    </button>
-  </div>
   <div id="spinner-wrapper">
     <div class="lds-ring">
       <div></div>
