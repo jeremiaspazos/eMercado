@@ -11,6 +11,7 @@ function showProductsList(array) {
         htmlContentToAppend += `
             <div class="col-12 col-sm-8 col-md-4 card">
             <div class="card">
+            <a href="product-info.html?producto=` + products.name + `">
             <img src="` + products.imgSrc + `" class="card-img-top"/>
             <div class="card-body">
             <h5 class="card-title">` + products.name + `</h5>
@@ -22,6 +23,7 @@ function showProductsList(array) {
             
             <div>Se han vendido ` + products.soldCount + ` hasta el momento </div>
            </div>
+           </a>
            </div>
            </div>
                 
