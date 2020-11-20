@@ -1,11 +1,11 @@
-const CATEGORIES_URL = "https://japdevdep.github.io/ecommerce-api/category/all.json";
-const PUBLISH_PRODUCT_URL = "https://japdevdep.github.io/ecommerce-api/product/publish.json";
-const CATEGORY_INFO_URL = "https://japdevdep.github.io/ecommerce-api/category/1234.json";
-const PRODUCTS_URL = "https://japdevdep.github.io/ecommerce-api/product/all.json";
-const PRODUCT_INFO_URL = "https://japdevdep.github.io/ecommerce-api/product/5678.json";
-const PRODUCT_INFO_COMMENTS_URL = "https://japdevdep.github.io/ecommerce-api/product/5678-comments.json";
-const CART_INFO_URL = "https://japdevdep.github.io/ecommerce-api/cart/654.json";
-const CART_BUY_URL = "https://japdevdep.github.io/ecommerce-api/cart/buy.json";
+const CATEGORIES_URL = "http://localhost:3000/static/json/category/all.json";
+const PUBLISH_PRODUCT_URL = "http://localhost:3000/static/json/product/publish.json";
+const CATEGORY_INFO_URL = "http://localhost:3000/static/json/category/1234.json";
+const PRODUCTS_URL = "http://localhost:3000/static/json/product/all.json";
+const PRODUCT_INFO_URL = "http://localhost:3000/static/json/product/5678.json";
+const PRODUCT_INFO_COMMENTS_URL = "http://localhost:3000/static/json/product/5678-comments.json";
+const CART_INFO_URL = "http://localhost:3000/static/json/cart/654.json";
+const CART_BUY_URL = "http://localhost:3000/static/json/cart/buy.json";
 //Funcion para ser enviado al login la primera vez que se ingresa al Home
 
 var showSpinner = function(){

@@ -9,6 +9,42 @@ function showProductsList(array) {
 
 
         htmlContentToAppend += `
+        <a href="product-info.html?producto=` + products.name + `" class="list-group-item list-group-item-action">
+        <div class="list-group-item list-group-item-action">
+            <div class="row">
+                <div class="col-3">
+                    <img src="` + products.imgSrc + `" alt="` + products.desc + `" class="img-thumbnail">
+                </div>
+                <div class="col">
+                    <div class="d-flex w-100 justify-content-between">
+                        
+                        <h4 class="mb-1">`+ products.name + `</h4>
+                        <small class="text-muted">` + products.cost + `USD </small>
+                    </div>
+                    <div>` + products.description + `</div>
+                    <br>
+                    <br>
+                    <br>
+                    <div>Se han vendido ` + products.soldCount + ` hasta el momento </div>
+                </div>
+            </div>
+        </div>
+        </a>
+        `
+
+
+    };
+    document.getElementById("container-products").innerHTML = htmlContentToAppend;
+};
+
+function showProductsGallery(array) {
+
+    let htmlContentToAppend = "";
+    for (let i = 0; i < array.length; i++) {
+        let products = array[i];
+
+
+        htmlContentToAppend += `
             <div class="col-12 col-sm-8 col-md-4 card">
             <div class="card">
             <a href="product-info.html?producto=` + products.name + `">
@@ -129,4 +165,11 @@ document.getElementById("cleanFilter").addEventListener("click", function () {
 
 document.getElementById("browser").addEventListener("keyup", function () {
     filtroPorTecleo(productsArray)
+});
+
+document.getElementById("viewGallery").addEventListener("click", function () {
+    showProductsGallery(productsArray)
+});
+document.getElementById("viewList").addEventListener("click", function () {
+    showProductsList    (productsArray)
 });

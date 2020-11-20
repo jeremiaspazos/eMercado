@@ -41,7 +41,7 @@ function showImagesGallery(array) {
     </div> `
 		} else {
 			imgToAppend +=
-			`<div class="carousel-item">
+				`<div class="carousel-item">
 			<img src="`+ imagenes + `" class="d-block img-fluid" alt="...">
 		  </div> `
 		};
@@ -63,8 +63,6 @@ function showComments(array) {
 
 
 		htmlContentToAppend += `
-	<div class="container text-left border">
-	<div class="">
 		Valoracion:`
 		for (let x = 0; x < 5; x++) {
 			if (x >= comment.score) {
@@ -74,17 +72,38 @@ function showComments(array) {
 				htmlContentToAppend += `<p class="fa fa-star checked">`
 			}
 		};
-		htmlContentToAppend += `
-		
-		<div class="valoracion text-justify">
-		  <p class="descripcion_valoracion">`+ comment.description + `</p>
-		  <p class="usuario-valoracion">Usuario: `+ comment.user + `</p>
-		  <small>Fecha de publicación: `+ comment.dateTime + `</small>
+		htmlContentToAppend +=
+			`			<div class="review">
+		<div class="d-flex flex-row comment-user mb-4">
+							<div class="ml-2">
+								<div class="d-flex flex-row align-items-center"><span class="name font-weight-bold">`+ comment.user + `</span><span class="dot"></span><span class="date">` + comment.dateTime + `</span></div>
+								
+							</div>
+						</div>
+						<div class="">
+							<p class="comment-text">`+ comment.description + `</p>
+						</div>
+					</div>
+				</div>
+			</div>
 		</div>
 	</div>
-	</div>
-	<br>
-    `
+		`
+
+
+
+		/* `
+		
+	<div class="list-group-item list-group-item-action ">
+		<div>
+				<h4 class="mb-1">`+ comment.user + `</h4>
+				<small class="text-muted">` + comment.dateTime + ` </small>
+			</div>
+			<div>`+ comment.description +`</div>
+</div>
+`
+*/
+
 	}
 	containerPre.innerHTML += htmlContentToAppend;
 };
@@ -110,12 +129,13 @@ function agregarComentario(event) {
 		  <span class="fa fa-star"></span>
 		  <span class="fa fa-star"></span>   
 		</div>
-		<div class="valoracion text-justify">
-		  <p class="descripcion_valoracion">`+ comentario + `</p>
-		  <p class="usuario-valoracion">Usuario: `+ nombreUsuario + `</p>
-		  <small>Fecha de publicación: `+ fechaActual + ` ` + horaActual + `</small>
-		</div>
-	</div>
+		<div class="list-group-item list-group-item-action ">
+		<div>
+				<h4 class="mb-1">`+ nombreUsuario + `</h4>
+				<small class="text-muted">` + fechaActual + ` ` + horaActual + ` </small>
+			</div>
+			<div>`+ comentario + `</div>
+</div>
 	<br>
 	`
 	var elementoComentario = document.createElement('div');
@@ -163,7 +183,9 @@ document.addEventListener("DOMContentLoaded", function (e) {
 
 
 					htmlContentToAppend +=
-						`<a href="product-info.html?producto=` + productos.name + `"><div class="col-sm-4">
+						`
+						<div class="col-12 col-sm-4 offset-1">
+						<a href="product-info.html?producto=` + productos.name + `">
 				<div class="card-sm" style="width: 18rem;">
 				<img class="card-img-top" src="` + productos.imgSrc + `" alt="Card image cap">
 				<div class="card-body">
@@ -171,10 +193,11 @@ document.addEventListener("DOMContentLoaded", function (e) {
 				  <p class="card-text">`+ productos.description + `</p>
 				</div>
 			  </div>
-			  </div></a>`
+			  </a>
+			  </div>`
 
 				};
-				document.getElementById("relatedpro").innerHTML += htmlContentToAppend;
+				document.getElementById("relatedpro").innerHTML = htmlContentToAppend;
 			}
 
 		})
