@@ -74,13 +74,13 @@ function showComments(array) {
 		};
 		htmlContentToAppend +=
 			`			<div class="review">
-		<div class="d-flex flex-row comment-user mb-4">
-							<div class="ml-2">
+		<div class="d-flex flex-row comment-user">
+							<div class="">
 								<div class="d-flex flex-row align-items-center"><span class="name font-weight-bold">`+ comment.user + `</span><span class="dot"></span><span class="date">` + comment.dateTime + `</span></div>
 								
 							</div>
 						</div>
-						<div class="">
+						<div class="mb-4">
 							<p class="comment-text">`+ comment.description + `</p>
 						</div>
 					</div>
