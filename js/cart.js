@@ -1,31 +1,10 @@
 var htmlContentToAppend = "";
 var cartArray = [];
 var USD = 40;
-let pesos = 0;
-let pesos2 = 0;
+var pesos = 0;
+var pesos2 = 0;
 var tipoEnvio = 1.15;
 
-
-
-function totals() {
-    let subtotalFinal = document.getElementById("subtotalN").innerHTML;
-
-    var total = subtotalFinal * tipoEnvio;
-    var costoEnvio = total - subtotalFinal;
-    let dolarCheck = document.getElementById("dolar").checked;
-    let pesosCheck = document.getElementById("pesos").checked;
-    let dolar = document.getElementById("dolar").value;
-    let pesos = document.getElementById("pesos").value;
-    if (dolarCheck === true) {
-
-        document.getElementById("costoEnvio").innerHTML = `Envio: ` + costoEnvio.toFixed(2) + `` + dolar + ` `;
-        document.getElementById("total").innerHTML = `Total: ` + total.toFixed(2) + `` + dolar + ``;
-    } else {
-        document.getElementById("costoEnvio").innerHTML = `Envio: ` + costoEnvio.toFixed(2) + `` + pesos + ` `;
-        document.getElementById("total").innerHTML = `Total: ` + total.toFixed(2) + `` + pesos + ` `;
-    }
-
-};
 
 function cartDisplay(array) {
 
@@ -34,6 +13,9 @@ function cartDisplay(array) {
 
         htmlContentToAppend += `
         <div class="list-group-item list-group-item-action" id="`+ article.name + `" style="border-radius: 15px; margin-top: 5px;">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close" id="eliminar">
+              <span aria-hidden="true">&times;</span>
+            </button>
             <div class="row">
                 <div class="col-3">
                     <img src="` + article.src + `" class="img-thumbnail" style="width:150px;">
@@ -55,7 +37,6 @@ function cartDisplay(array) {
     }
     document.getElementById("container-cart").innerHTML = htmlContentToAppend;
 };
-
 
 
 function articleSubtotals(array) {
@@ -113,6 +94,26 @@ function subtotalUSD(array) {
         document.getElementById("subtotalCompra").innerHTML = `<p> El subtotal es de ` + array[1].currency + ` <p id="subtotalN" style="font-size:20px;">` + suma + `</p></p>`;
         totals();
     }
+};
+
+function totals() {
+    let subtotalFinal = document.getElementById("subtotalN").innerHTML;
+
+    var total = subtotalFinal * tipoEnvio;
+    var costoEnvio = total - subtotalFinal;
+    let dolarCheck = document.getElementById("dolar").checked;
+    let pesosCheck = document.getElementById("pesos").checked;
+    let dolar = document.getElementById("dolar").value;
+    let pesos = document.getElementById("pesos").value;
+    if (dolarCheck === true) {
+
+        document.getElementById("costoEnvio").innerHTML = `Envio: ` + costoEnvio.toFixed(2) + `` + dolar + ` `;
+        document.getElementById("total").innerHTML = `Total: ` + total.toFixed(2) + `` + dolar + ``;
+    } else {
+        document.getElementById("costoEnvio").innerHTML = `Envio: ` + costoEnvio.toFixed(2) + `` + pesos + ` `;
+        document.getElementById("total").innerHTML = `Total: ` + total.toFixed(2) + `` + pesos + ` `;
+    }
+
 };
 
 
